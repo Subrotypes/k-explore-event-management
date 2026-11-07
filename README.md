@@ -33,7 +33,7 @@ Built with **TypeScript** for strict type safety and orchestrated with **GSAP 3,
 
 - **GitHub Repository:** [https://github.com/Subrotypes/k-explore-event-management](https://github.com/Subrotypes/k-explore-event-management)
 - **Live Deployed Website:** 
-  - **Vercel:** `https://k-explore-event-management.vercel.app` (or deployment URL)
+  - **Vercel (Production):** [https://k-explore-event-management-eight.vercel.app](https://k-explore-event-management-eight.vercel.app)
   - **GitHub Pages:** [https://subrotypes.github.io/k-explore-event-management/](https://subrotypes.github.io/k-explore-event-management/)
 
 ---
