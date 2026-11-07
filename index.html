@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseEvent | K Explore – Next-Gen Event Management Platform</title>
+  <meta name="description" content="Discover, explore, and register for world-class technology summits, music festivals, design forums, and workshops. Complete with live countdowns, real-time validation, and digital QR passes." />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            heading: ['"Space Grotesk"', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Custom Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Bar                                                        -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full glass-nav border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-xl p-1">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform duration-300">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black font-heading tracking-tight text-slate-900 dark:text-white">Pulse<span class="text-indigo-600 dark:text-indigo-400">Event</span></span>
+            <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+              K Explore
+            </span>
+          </div>
+          <span class="text-[11px] font-medium text-slate-400 hidden sm:block -mt-1">Experience More. Live.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#featured-section" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Featured</a>
+        <a href="#explore-section" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Explore Events</a>
+        <a href="#categories-section" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Categories</a>
+        <a href="#how-it-works" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">How It Works</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle-btn" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-700 flex items-center justify-center transition-all shadow-sm" aria-label="Toggle theme">
+          <!-- Sun icon (shown in dark mode) -->
+          <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <!-- Moon icon (shown in light mode) -->
+          <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <!-- "My Bookings" Button with Badge Indicator -->
+        <button id="my-bookings-btn" class="relative px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 hover:border-indigo-300 dark:hover:border-indigo-700 text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-2 text-xs font-bold transition-all shadow-sm">
+          <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
+          </svg>
+          <span class="hidden sm:inline">My Tickets</span>
+          <span id="bookings-count-badge" class="w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] font-extrabold flex items-center justify-center transition-all opacity-0 scale-75">
+            0
+          </span>
+        </button>
+
+        <!-- "Host Event" Button -->
+        <button id="host-event-btn" class="hidden lg:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold transition-all shadow-md">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          <span>Host Event</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-indigo-600" aria-label="Toggle mobile menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Drawer -->
+    <div id="mobile-menu-drawer" class="hidden md:hidden px-6 py-5 border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl space-y-4">
+      <div class="flex flex-col gap-3 font-semibold text-slate-700 dark:text-slate-200 text-sm">
+        <a href="#featured-section" class="py-2 hover:text-indigo-600">Featured Spotlight</a>
+        <a href="#explore-section" class="py-2 hover:text-indigo-600">Explore Events</a>
+        <a href="#categories-section" class="py-2 hover:text-indigo-600">Browse Categories</a>
+        <a href="#how-it-works" class="py-2 hover:text-indigo-600">How It Works</a>
+      </div>
+      <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+        <button id="hero-host-btn-mobile" onclick="document.getElementById('host-event-btn').click()" class="w-full py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          <span>Host an Event</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Main Content Area                                                         -->
+  <!-- ========================================================================= -->
+  <main class="flex-1">
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+      <!-- Background Ambient Glow Shapes -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+      <div class="absolute top-10 right-10 w-72 h-72 bg-blue-500/10 blur-[90px] rounded-full pointer-events-none -z-10"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+          <!-- Pill Tag -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 shadow-sm animate-float">
+            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+            <span>K Explore Web Designing • Event Management Experience</span>
+          </div>
+
+          <!-- Main Hero Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-slate-900 dark:text-white tracking-tight leading-[1.12]">
+            Discover Unforgettable Events. <br class="hidden sm:inline" />
+            <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Connect & Experience.</span>
+          </h1>
+
+          <!-- Hero Subtitle -->
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Explore curated tech summits, indie music festivals, design masterclasses, and startup galas. Register in seconds, download verified digital boarding passes, and sync straight to your calendar.
+          </p>
+
+          <!-- Hero CTAs -->
+          <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <button id="hero-explore-btn" class="px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-xl shadow-indigo-600/25 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+              <span>Explore All Events</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <button id="hero-host-btn" class="px-7 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-sm shadow-sm transition-all flex items-center gap-2">
+              <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              <span>Host an Event</span>
+            </button>
+          </div>
+
+          <!-- Hero Platform Stats Ribbon -->
+          <div class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-200/80 dark:border-slate-800/80 mt-8">
+            <div class="p-3 text-center">
+              <span class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white block">150+</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Curated Events</span>
+            </div>
+            <div class="p-3 text-center">
+              <span class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white block">45,000+</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Happy Attendees</span>
+            </div>
+            <div class="p-3 text-center">
+              <span class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white block">99.4%</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Verified Organizers</span>
+            </div>
+            <div class="p-3 text-center">
+              <span class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white block">4.9 / 5</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Satisfaction Score</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- FEATURED EVENT SPOTLIGHT WITH LIVE COUNTDOWN TIMER                      -->
+    <!-- ======================================================================= -->
+    <section id="featured-section" class="py-12 bg-white dark:bg-slate-900/60 border-y border-slate-200/80 dark:border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+              <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Spotlight Feature</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white mt-1">
+              Flagship Event of the Month
+            </h2>
+          </div>
+          <span class="hidden sm:inline-block text-xs font-semibold text-slate-400">
+            Live ticking countdown
+          </span>
+        </div>
+
+        <!-- Grand Spotlight Card -->
+        <div class="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl text-white">
+          <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+            
+            <!-- Left Info & Live Countdown (7 cols) -->
+            <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between space-y-6">
+              
+              <!-- Badges -->
+              <div>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span id="spotlight-category" class="px-3.5 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 uppercase tracking-wide">
+                    Technology
+                  </span>
+                  <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                    🔥 Selling Out Fast
+                  </span>
+                </div>
+
+                <!-- Event Title -->
+                <h3 id="spotlight-title" class="text-2xl sm:text-3xl lg:text-4xl font-black font-heading mt-4 leading-tight tracking-tight text-white">
+                  Global AI & Next-Gen Web Summit 2026
+                </h3>
+
+                <!-- Logistics Metas -->
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-4 text-xs sm:text-sm text-slate-300">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span id="spotlight-date">Dec 10 - 12, 2026</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                    <span id="spotlight-venue">Silicon Convention Center, Tech Park</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LIVE TICKING COUNTDOWN CLOCK -->
+              <div class="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-300 block mb-3">
+                  Starts In:
+                </span>
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center">
+                  <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-white/5">
+                    <span id="cd-days" class="text-2xl sm:text-3xl font-black font-heading text-indigo-400 block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">Days</span>
+                  </div>
+                  <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-white/5">
+                    <span id="cd-hours" class="text-2xl sm:text-3xl font-black font-heading text-indigo-400 block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">Hours</span>
+                  </div>
+                  <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-white/5">
+                    <span id="cd-minutes" class="text-2xl sm:text-3xl font-black font-heading text-indigo-400 block">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">Mins</span>
+                  </div>
+                  <div class="p-2 sm:p-3 rounded-xl bg-slate-900/80 border border-white/5">
+                    <span id="cd-seconds" class="text-2xl sm:text-3xl font-black font-heading text-rose-400 block animate-pulse">00</span>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase">Secs</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTAs & Price -->
+              <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                <div>
+                  <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Registration Pass</span>
+                  <span id="spotlight-price" class="text-2xl font-black text-white">$149</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <button id="spotlight-details-btn" class="px-5 py-3 rounded-xl border border-white/20 hover:bg-white/10 text-xs font-bold transition-colors">
+                    View Details
+                  </button>
+                  <button id="spotlight-register-btn" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-1.5">
+                    <span>Register Now</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Visual Banner (5 cols) -->
+            <div class="lg:col-span-5 relative min-h-[260px] lg:min-h-full">
+              <img id="spotlight-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80" alt="Spotlight Event" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-slate-900 lg:from-slate-900/90 via-transparent to-transparent"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- BROWSE BY CATEGORY                                                      -->
+    <!-- ======================================================================= -->
+    <section id="categories-section" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Curated Themes</span>
+          <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white mt-1">
+            Explore by Category
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+            Click any category to instantly filter events tailored to your interests
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          
+          <!-- Category Card 1: Technology -->
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500 transition-all text-center shadow-sm hover:shadow-xl hover:-translate-y-1" data-category="tech">
+            <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Tech & AI</h4>
+            <span class="text-[11px] text-slate-400 mt-0.5 block">Summits & Labs</span>
+          </button>
+
+          <!-- Category Card 2: Music -->
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-pink-400 dark:hover:border-pink-500 transition-all text-center shadow-sm hover:shadow-xl hover:-translate-y-1" data-category="music">
+            <div class="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-950/80 text-pink-600 dark:text-pink-400 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Music</h4>
+            <span class="text-[11px] text-slate-400 mt-0.5 block">Live & Festivals</span>
+          </button>
+
+          <!-- Category Card 3: Design -->
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-purple-400 dark:hover:border-purple-500 transition-all text-center shadow-sm hover:shadow-xl hover:-translate-y-1" data-category="design">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Design & UI</h4>
+            <span class="text-[11px] text-slate-400 mt-0.5 block">Creative Craft</span>
+          </button>
+
+          <!-- Category Card 4: Business -->
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-sky-400 dark:hover:border-sky-500 transition-all text-center shadow-sm hover:shadow-xl hover:-translate-y-1" data-category="business">
+            <div class="w-12 h-12 rounded-xl bg-sky-50 dark:bg-sky-950/80 text-sky-600 dark:text-sky-400 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">Business</h4>
+            <span class="text-[11px] text-slate-400 mt-0.5 block">VCs & Startups</span>
+          </button>
+
+          <!-- Category Card 5: Sports -->
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all text-center shadow-sm hover:shadow-xl hover:-translate-y-1" data-category="sports">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Sports</h4>
+            <span class="text-[11px] text-slate-400 mt-0.5 block">Runs & Wellness</span>
+          </button>
+
+          <!-- Category Card 6: Workshops -->
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500 transition-all text-center shadow-sm hover:shadow-xl hover:-translate-y-1" data-category="workshop">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <h4 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Workshops</h4>
+            <span class="text-[11px] text-slate-400 mt-0.5 block">Hands-on Labs</span>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- EXPLORE & FILTER EVENTS DIRECTORY                                       -->
+    <!-- ======================================================================= -->
+    <section id="explore-section" class="py-12 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Discover Opportunities</span>
+            <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white mt-1">
+              Upcoming Events
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Browse curated events or use filters to pinpoint your next experience
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="results-count-text" class="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              Showing 12 of 12 events
+            </span>
+            <!-- View Mode Switcher -->
+            <div class="flex items-center p-1 rounded-xl bg-slate-200/80 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700/60">
+              <button id="view-grid-btn" class="p-1.5 rounded-lg bg-indigo-600 text-white transition-colors" aria-label="Grid view">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+              </button>
+              <button id="view-list-btn" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors" aria-label="List view">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar Card -->
+        <div class="p-5 sm:p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm mb-8 space-y-5">
+          
+          <!-- Top Row: Instant Search & Category Pills -->
+          <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
+            
+            <!-- Search Input Box -->
+            <div class="relative flex-1">
+              <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <input id="search-input" type="text" placeholder="Search by event title, venue, city or keyword..." class="w-full pl-11 pr-10 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-sm font-medium text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 transition-all" />
+              <button id="search-clear-btn" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white p-1" aria-label="Clear search">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+            </div>
+
+            <!-- Category Pills Bar -->
+            <div id="category-pills" class="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md transition-all whitespace-nowrap" data-category="all">
+                All
+              </button>
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all whitespace-nowrap" data-category="tech">
+                Technology
+              </button>
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all whitespace-nowrap" data-category="music">
+                Music
+              </button>
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all whitespace-nowrap" data-category="design">
+                Design
+              </button>
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all whitespace-nowrap" data-category="business">
+                Business
+              </button>
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all whitespace-nowrap" data-category="sports">
+                Sports
+              </button>
+              <button class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all whitespace-nowrap" data-category="workshop">
+                Workshops
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Secondary Filters (Date, Price, Sort) -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+              
+              <!-- Date Filter Dropdown -->
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-medium text-slate-400">Date:</span>
+                <select id="date-filter" class="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:ring-1 focus:ring-indigo-500">
+                  <option value="all">All Dates</option>
+                  <option value="week">Next 7 Days</option>
+                  <option value="month">Next 30 Days</option>
+                </select>
+              </div>
+
+              <!-- Price Filter Dropdown -->
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-medium text-slate-400">Price:</span>
+                <select id="price-filter" class="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:ring-1 focus:ring-indigo-500">
+                  <option value="all">All Prices</option>
+                  <option value="free">Free Events Only</option>
+                  <option value="under50">Under $50</option>
+                  <option value="50plus">$50 and above</option>
+                </select>
+              </div>
+
+              <!-- Sort Dropdown -->
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-medium text-slate-400">Sort:</span>
+                <select id="sort-select" class="px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 focus:ring-1 focus:ring-indigo-500">
+                  <option value="date-asc">Soonest Date</option>
+                  <option value="popular">Most Popular</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </select>
+              </div>
+
+            </div>
+
+            <!-- Reset Filters CTA -->
+            <button id="reset-filters-btn" class="text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1 transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              <span>Reset Filters</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Dynamic Events Grid/List Container -->
+        <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Populated dynamically via app.js -->
+        </div>
+
+        <!-- No Results Empty State -->
+        <div id="no-results-state" class="hidden text-center py-20 px-4 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800">
+          <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-500 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">No Matching Events Found</h3>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mt-1">
+            We couldn't find any events matching your selected search or filters. Try adjusting your query or resetting filters.
+          </p>
+          <button onclick="document.getElementById('reset-filters-btn').click()" class="mt-5 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md">
+            Clear All Filters
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- HOW IT WORKS SECTION                                                    -->
+    <!-- ======================================================================= -->
+    <section id="how-it-works" class="py-20 bg-slate-100/60 dark:bg-slate-900/40 border-t border-slate-200/80 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Seamless Flow</span>
+          <h2 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white mt-1">
+            How PulseEvent Works
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+            Experience an effortless end-to-end event discovery and booking journey
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Step 1 -->
+          <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <span class="text-4xl font-black font-heading text-indigo-200 dark:text-indigo-950/80 block">01</span>
+            <div class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Discover & Filter</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Browse top-tier conferences, hackathons, and concerts. Filter by category, price, date, or search directly for venues and topics.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <span class="text-4xl font-black font-heading text-purple-200 dark:text-purple-950/80 block">02</span>
+            <div class="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Register with Live Validation</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Fill out the intuitive registration form. Real-time client-side validation ensures your email, phone, and name are completely accurate before locking your spot.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <span class="text-4xl font-black font-heading text-pink-200 dark:text-pink-950/80 block">03</span>
+            <div class="w-12 h-12 rounded-2xl bg-pink-50 dark:bg-pink-950/80 text-pink-600 dark:text-pink-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Instant Pass & Calendar Sync</h3>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              Receive your airline boarding-pass style digital ticket with a vector QR code. Print it, save as PDF, or export directly to Apple or Google Calendar (.ics).
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- NEWSLETTER SUBSCRIPTION CTA                                             -->
+    <!-- ======================================================================= -->
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative rounded-3xl bg-gradient-to-r from-indigo-900 via-indigo-950 to-purple-950 text-white p-8 sm:p-12 overflow-hidden shadow-2xl border border-indigo-800">
+          
+          <div class="relative z-10 max-w-2xl mx-auto text-center space-y-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 uppercase tracking-widest">
+              Stay in the Loop
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-black font-heading text-white">
+              Never Miss a Breakthrough Event
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Subscribe to get curated weekly event recommendations, early-bird ticket discounts, and speaker announcements delivered to your inbox.
+            </p>
+
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2.5 max-w-md mx-auto pt-4">
+              <input id="newsletter-email" type="email" placeholder="Enter your email address..." class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 backdrop-blur-md" required />
+              <button type="submit" class="px-6 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-bold transition-all shadow-md">
+                Subscribe
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-12 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Brand Info -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black text-lg">
+              P
+            </div>
+            <span class="text-lg font-black font-heading text-slate-900 dark:text-white">PulseEvent</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            The modern, interactive event management portal built for the K Explore Web Designing challenge. Clean UI/UX, responsive layout, form validation, and local storage persistence.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h5 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">Quick Navigation</h5>
+          <ul class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
+            <li><a href="#featured-section" class="hover:text-indigo-600 transition-colors">Featured Event</a></li>
+            <li><a href="#explore-section" class="hover:text-indigo-600 transition-colors">Explore All Events</a></li>
+            <li><a href="#categories-section" class="hover:text-indigo-600 transition-colors">Categories</a></li>
+            <li><a href="#how-it-works" class="hover:text-indigo-600 transition-colors">How It Works</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories -->
+        <div>
+          <h5 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">Popular Categories</h5>
+          <ul class="space-y-2 text-xs text-slate-500 dark:text-slate-400">
+            <li><a href="#explore-section" class="hover:text-indigo-600 transition-colors">Technology & AI</a></li>
+            <li><a href="#explore-section" class="hover:text-indigo-600 transition-colors">Music & Festivals</a></li>
+            <li><a href="#explore-section" class="hover:text-indigo-600 transition-colors">UX/UI & Product Design</a></li>
+            <li><a href="#explore-section" class="hover:text-indigo-600 transition-colors">Startup Pitches & VCs</a></li>
+          </ul>
+        </div>
+
+        <!-- Project & Submission Credits -->
+        <div>
+          <h5 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">Submission Details</h5>
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+            <p><span class="font-bold text-slate-900 dark:text-white">Task:</span> Event Management Website</p>
+            <p><span class="font-bold text-slate-900 dark:text-white">Track:</span> K Explore Web Designing</p>
+            <p><span class="font-bold text-slate-900 dark:text-white">Stack:</span> HTML5 • CSS3 • JavaScript</p>
+            <p><span class="font-bold text-slate-900 dark:text-white">Storage:</span> LocalStorage Powered</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Disclaimer & Copyright -->
+      <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>© 2026 PulseEvent. Built with precision for K Explore Web Designing Evaluation.</p>
+        <div class="flex items-center gap-4">
+          <span class="hover:text-slate-600 dark:hover:text-white transition-colors cursor-pointer" onclick="alert('PulseEvent Platform v1.0.0 — K Explore Edition')">v1.0.0</span>
+          <span>•</span>
+          <span class="text-emerald-500 font-semibold flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Ready for Deployment
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS & DRAWERS                                                          -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. EVENT DETAILS MODAL -->
+  <div id="event-details-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-md overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="details-title">
+    <div class="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden modal-animate-in my-8 max-h-[90vh] flex flex-col">
+      <!-- Close Button -->
+      <button id="close-details-btn" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white backdrop-blur-md flex items-center justify-center transition-colors shadow-md" aria-label="Close details modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Scrollable Content -->
+      <div id="event-details-content" class="overflow-y-auto flex-1">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. REGISTRATION MODAL & FORM -->
+  <div id="registration-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-md overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="reg-heading">
+    <div class="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden modal-animate-in my-8">
+      
+      <!-- Modal Header -->
+      <div class="p-6 sm:p-8 pb-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Secure Your Spot</span>
+          <h3 id="reg-heading" class="text-xl sm:text-2xl font-black font-heading text-slate-900 dark:text-white mt-0.5">
+            Event Registration
+          </h3>
+        </div>
+        <button id="close-reg-btn" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-300 flex items-center justify-center transition-colors" aria-label="Close registration modal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Registration Form Body -->
+      <form id="registration-form" class="p-6 sm:p-8 space-y-5" novalidate>
+        
+        <!-- Selected Event Mini Summary -->
+        <div id="reg-event-summary">
+          <!-- Populated by app.js -->
+        </div>
+
+        <!-- Full Name Field -->
+        <div>
+          <label for="reg-name" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            Full Name <span class="text-rose-500">*</span>
+          </label>
+          <input id="reg-name" type="text" placeholder="e.g. Alex Morgan" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 transition-all" required />
+          <p id="reg-name-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
+        </div>
+
+        <!-- Email Address Field -->
+        <div>
+          <label for="reg-email" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            Email Address <span class="text-rose-500">*</span>
+          </label>
+          <input id="reg-email" type="email" placeholder="e.g. alex@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 transition-all" required />
+          <p id="reg-email-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div>
+          <label for="reg-phone" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            Phone Number <span class="text-rose-500">*</span>
+          </label>
+          <input id="reg-phone" type="tel" placeholder="e.g. (555) 234-5678 or 9876543210" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 transition-all" required />
+          <p id="reg-phone-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
+        </div>
+
+        <!-- Ticket Tier & Quantity Grid -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="reg-ticket-tier" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+              Ticket Tier
+            </label>
+            <select id="reg-ticket-tier" class="w-full px-3 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+              <option value="general">General Admission</option>
+              <option value="vip">VIP All-Access (+60%)</option>
+              <option value="student">Student Pass (-30%)</option>
+            </select>
+          </div>
+          <div>
+            <label for="reg-ticket-count" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+              Seats (Max 5)
+            </label>
+            <select id="reg-ticket-count" class="w-full px-3 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+              <option value="1">1 Seat</option>
+              <option value="2">2 Seats</option>
+              <option value="3">3 Seats</option>
+              <option value="4">4 Seats</option>
+              <option value="5">5 Seats</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Optional Special Requests / Notes -->
+        <div>
+          <label for="reg-notes" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            Special Requests / Dietary Notes <span class="text-slate-400 font-normal lowercase">(optional)</span>
+          </label>
+          <input id="reg-notes" type="text" placeholder="e.g. Wheelchair access, vegetarian lunch..." class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:ring-1 focus:ring-indigo-500" />
+        </div>
+
+        <!-- Terms Agreement Checkbox -->
+        <div class="pt-1">
+          <label class="flex items-start gap-2.5 cursor-pointer">
+            <input id="reg-terms" type="checkbox" class="w-4 h-4 mt-0.5 rounded text-indigo-600 focus:ring-indigo-500 dark:bg-slate-800 border-slate-300 dark:border-slate-700" required />
+            <span class="text-xs text-slate-600 dark:text-slate-300">
+              I agree to the <span class="font-bold underline text-indigo-600 dark:text-indigo-400">Terms of Attendance</span> and consent to event notification emails.
+            </span>
+          </label>
+          <p id="reg-terms-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
+        </div>
+
+        <!-- Submit & Order Summary Strip -->
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-4">
+          <div>
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Estimated Total</span>
+            <span id="reg-price-total" class="text-xl font-black text-slate-900 dark:text-white">$149</span>
+          </div>
+          <button id="reg-submit-btn" type="submit" class="px-7 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-2">
+            <span>Confirm & Complete</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. DIGITAL TICKET PASS CONFIRMATION MODAL -->
+  <div id="ticket-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-md overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="ticket-pass-title">
+    <div class="relative w-full max-w-xl modal-animate-in my-8">
+      
+      <!-- Top Action Bar (Print, ICS, Close) -->
+      <div class="no-print flex items-center justify-between mb-4 bg-slate-900/80 p-3 rounded-2xl backdrop-blur-md border border-slate-800 text-white">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+          <span id="ticket-pass-title" class="text-xs font-bold uppercase tracking-wider text-emerald-400">Pass Confirmed</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="download-ics-btn" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-[11px] font-bold text-white transition-colors flex items-center gap-1.5 shadow-sm" title="Add to Apple/Google/Outlook Calendar">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <span>Add to Calendar</span>
+          </button>
+          <button id="print-ticket-btn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] font-bold text-white transition-colors flex items-center gap-1.5" title="Print ticket or save as PDF">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            <span>Print / PDF</span>
+          </button>
+          <button id="close-ticket-btn" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white" aria-label="Close ticket">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ticket Canvas/Card Container -->
+      <div id="ticket-container">
+        <!-- Rendered by ticket.js -->
+      </div>
+
+      <!-- Bottom Helper -->
+      <div class="no-print mt-4 text-center">
+        <button id="view-bookings-from-ticket-btn" class="text-xs font-semibold text-slate-400 hover:text-white underline">
+          View all your registered passes in My Tickets →
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. "MY BOOKINGS" SLIDE-OVER DRAWER -->
+  <aside id="bookings-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-slate-50 dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col" aria-label="My Registrations Drawer">
+    
+    <!-- Drawer Header -->
+    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+        </div>
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900 dark:text-white">My Registrations</h3>
+          <p class="text-[11px] text-slate-400">Stored locally in your browser</p>
+        </div>
+      </div>
+      <button id="close-bookings-btn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-300 flex items-center justify-center transition-colors" aria-label="Close bookings drawer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+
+    <!-- Registrations List Container -->
+    <div id="bookings-list" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Populated dynamically by app.js -->
+    </div>
+
+    <!-- Empty Bookings State -->
+    <div id="empty-bookings-notice" class="hidden flex-1 flex flex-col items-center justify-center p-8 text-center">
+      <div class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950 text-indigo-500 flex items-center justify-center mb-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+      </div>
+      <h4 class="text-base font-bold text-slate-900 dark:text-white">No Registered Events Yet</h4>
+      <p class="text-xs text-slate-500 dark:text-slate-400 max-w-xs mt-1">
+        Browse upcoming events, select your favorite, and complete registration to see your passes here.
+      </p>
+      <button onclick="document.getElementById('close-bookings-btn').click(); document.getElementById('explore-section').scrollIntoView({behavior:'smooth'});" class="mt-5 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md">
+        Explore Events Now
+      </button>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-center">
+      <span class="text-[11px] text-slate-400">
+        💡 Registrations and spots automatically synchronize in real time.
+      </span>
+    </div>
+
+  </aside>
+
+  <!-- 5. "HOST AN EVENT" MODAL (BONUS FEATURE) -->
+  <div id="host-event-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-md overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="host-modal-title">
+    <div class="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden modal-animate-in my-8">
+      
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Organizer Portal</span>
+          <h3 id="host-modal-title" class="text-xl font-black font-heading text-slate-900 dark:text-white mt-0.5">
+            Create & Publish Event
+          </h3>
+        </div>
+        <button id="close-host-btn" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-300 flex items-center justify-center transition-colors" aria-label="Close host event modal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <form id="host-event-form" class="p-6 sm:p-8 space-y-4">
+        <div>
+          <label for="host-title" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            Event Title <span class="text-rose-500">*</span>
+          </label>
+          <input id="host-title" type="text" placeholder="e.g. NextGen Web3 & AI Hackathon" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-900 dark:text-white" required />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="host-category" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              Category <span class="text-rose-500">*</span>
+            </label>
+            <select id="host-category" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-900 dark:text-white">
+              <option value="Technology">Technology</option>
+              <option value="Music">Music</option>
+              <option value="Design">Design</option>
+              <option value="Business">Business</option>
+              <option value="Sports">Sports</option>
+              <option value="Workshops">Workshops</option>
+            </select>
+          </div>
+          <div>
+            <label for="host-date" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              Event Date <span class="text-rose-500">*</span>
+            </label>
+            <input id="host-date" type="date" value="2026-12-15" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-900 dark:text-white" required />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="host-time" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              Time String <span class="text-rose-500">*</span>
+            </label>
+            <input id="host-time" type="text" placeholder="10:00 AM - 05:00 PM" class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" required />
+          </div>
+          <div>
+            <label for="host-city" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              City / Format
+            </label>
+            <input id="host-city" type="text" placeholder="e.g. San Francisco / Hybrid" class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+          </div>
+        </div>
+
+        <div>
+          <label for="host-venue" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            Venue Address <span class="text-rose-500">*</span>
+          </label>
+          <input id="host-venue" type="text" placeholder="e.g. Metropol Expo Center, Hall 4" class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" required />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="host-price" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              Ticket Price ($) (0 = Free)
+            </label>
+            <input id="host-price" type="number" min="0" value="0" class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <label for="host-capacity" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+              Total Capacity
+            </label>
+            <input id="host-capacity" type="number" min="10" value="150" class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+          </div>
+        </div>
+
+        <div>
+          <label for="host-image" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            Cover Image URL
+          </label>
+          <input id="host-image" type="url" placeholder="https://images.unsplash.com/..." class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" />
+        </div>
+
+        <div>
+          <label for="host-short-desc" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            Short Description <span class="text-rose-500">*</span>
+          </label>
+          <textarea id="host-short-desc" rows="2" placeholder="Brief summary displayed on the card..." class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white" required></textarea>
+        </div>
+
+        <div>
+          <label for="host-full-desc" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            Detailed Description
+          </label>
+          <textarea id="host-full-desc" rows="3" placeholder="Full breakdown of agenda, highlights, and audience..." class="w-full px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
+          <button type="button" onclick="document.getElementById('close-host-btn').click()" class="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+            Cancel
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md">
+            Publish Event
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/events-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/ticket.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
