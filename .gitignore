@@ -14,3 +14,5 @@ node_modules/
 # Temporary files
 scratch/
 tmp/
+
+.vercel
