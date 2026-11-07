@@ -1,0 +1,29 @@
+{
+  "name": "pulse-event-management",
+  "version": "2.0.0",
+  "description": "Next-Gen Event Management Platform with TypeScript, GSAP ScrollTrigger, Lenis Smooth Scroll, and Dynamic Boarding Passes",
+  "main": "js/app.js",
+  "scripts": {
+    "build": "npm run build:ts",
+    "build:ts": "tsc --noEmit && esbuild src/app.ts --bundle --outfile=js/bundle.js --target=es2022 --format=iife",
+    "typecheck": "tsc --noEmit",
+    "test": "node tests/test-suite.js && node tests/ts-test-suite.js",
+    "serve": "python -m http.server 3000"
+  },
+  "keywords": [
+    "event-management",
+    "typescript",
+    "gsap",
+    "scrolltrigger",
+    "lenis",
+    "tailwind",
+    "responsive-design",
+    "k-explore"
+  ],
+  "author": "K Explore Team",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3"
+  }
+}

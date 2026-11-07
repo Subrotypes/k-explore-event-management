@@ -1,27 +1,31 @@
-# ⚡ PulseEvent — Next-Gen Event Management Platform
+# ⚡ PulseEvent — Next-Gen Event Management Platform (TypeScript & GSAP)
 > **K Explore – Web Designing Challenge**  
 > **Task Title:** Design and Develop a Responsive Event Management Website  
 > **Author / Student:** K Explore Participant  
-> **Tech Stack:** HTML5, CSS3, Tailwind CSS, Vanilla JavaScript (ES6+), LocalStorage  
+> **Tech Stack:** TypeScript, HTML5, CSS3, Tailwind CSS, GreenSock GSAP 3, ScrollTrigger, Lenis Smooth Scroll, Canvas Confetti, Web Audio API, LocalStorage  
 
 [![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)](https://github.com)
-[![Responsive](https://img.shields.io/badge/Design-Fully%20Responsive-blue?style=for-the-badge)](https://github.com)
-[![Tests](https://img.shields.io/badge/Tests-30%2F30%20Passing-brightgreen?style=for-the-badge)](tests/test-suite.js)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict%20Checked-blue?style=for-the-badge&logo=typescript)](tsconfig.json)
+[![Animations](https://img.shields.io/badge/Animations-GSAP%203%20%2B%20Lenis-purple?style=for-the-badge)](https://greensock.com)
+[![Tests](https://img.shields.io/badge/Tests-55%2F55%20Passing-brightgreen?style=for-the-badge)](tests/ts-test-suite.js)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](LICENSE)
 
 ---
 
 ## 📌 1. Project Overview & Problem Statement
 
-**PulseEvent** is an interactive, modern, and fully responsive event management platform engineered to deliver an exceptional user experience across mobile phones, tablets, and desktop computers.
+**PulseEvent** is an ultra-modern, fully responsive event management and ticketing platform engineered to deliver an exceptional user experience across mobile phones, tablets, and desktop computers.
 
-The platform empowers users to:
-1. **Explore & Discover** handpicked upcoming events across multiple domains (Technology, Music, Product Design, Business & Startups, Sports & Wellness, and Hands-on Workshops).
-2. **Filter & Search Dynamically** using instant keyword search, category pills, date filters, price brackets, and popularity/date sorting.
-3. **Inspect Detailed Event Information** including schedules/agendas, distinguished keynote speakers, venue addresses, and included attendee perks.
-4. **Register with Real-Time Validation** ensuring data integrity for participant names, emails, 10-digit phone numbers, seat allotments, and ticket tiers.
-5. **Receive a Digital Boarding Pass Ticket** complete with a verified vector QR code, booking reference ID, print/PDF layout, and one-click calendar sync (`.ics` format).
-6. **Manage Bookings Locally** via an off-canvas drawer that permits viewing saved passes or cancelling registrations to restore event capacity.
+Built with **TypeScript** for strict type safety and orchestrated with **GSAP 3, ScrollTrigger, and Lenis Smooth Scroll**, the platform provides:
+1. **Interactive Event Discovery**: Handpicked events across Technology, Music, Product Design, Business, Sports, and Hands-on Workshops.
+2. **Multi-View Catalog Modes**: Switch seamlessly between **3-Column Card Grid**, **Detailed Horizontal List View**, and an **Interactive Month Calendar Grid**.
+3. **Advanced Filtering & Multi-Currency**: Instant search, category pills, date filters, price brackets, and global currency conversion (**USD `$`, EUR `€`, GBP `£`, INR `₹`, CAD `CA$`**).
+4. **Rich Event Details & Community Reviews**: Complete agendas, keynote speaker cards, attendee perks, and authentic community reviews with star ratings.
+5. **Real-Time Client Form Validation**: Strict validation for attendee name, email, phone number, ticket tier, seat limits, and consent terms.
+6. **Digital Boarding Pass Ticket**: Real-time vector QR code generator, RFC 5545 `.ics` iCalendar export, and print/PDF formatting.
+7. **Organizer Ticket Scanner & Verification**: Built-in verification tool that parses booking IDs and QR tokens, validates ticket authenticity, and checks in attendees with audio feedback and confetti.
+8. **Export Passes**: Attendees and organizers can export registered passes to **JSON** or **CSV** with one click.
+9. **Sound Design (Web Audio API)**: Zero-audio-asset procedural audio synthesizer providing subtle micro-clicks, whooshes, and celebratory chimes (with a navbar mute toggle).
 
 ---
 
@@ -29,116 +33,135 @@ The platform empowers users to:
 
 - **GitHub Repository:** `https://github.com/<your-username>/k-explore-event-management`
 - **Live Deployed Website:** 
-  - **Vercel:** `https://pulse-event-k-explore.vercel.app` *(or your Vercel deployment URL)*
-  - **Netlify:** `https://pulse-event-k-explore.netlify.app` *(or your Netlify deployment URL)*
+  - **Vercel:** `https://pulse-event-k-explore.vercel.app`
+  - **Netlify:** `https://pulse-event-k-explore.netlify.app`
   - **GitHub Pages:** `https://<your-username>.github.io/k-explore-event-management/`
 
 ---
 
-## ✨ 3. Key Features & Implementation Highlights
+## 🎬 3. Animation Frameworks & Physics
 
-### 🏠 A. Attractive Hero & Spotlight Section
-- **Eye-Catching Hero Banner:** Modern typography (Space Grotesk & Plus Jakarta Sans), gradient text treatments, ambient mesh glow shapes, and a quick platform metrics ribbon (*150+ Curated Events, 45,000+ Attendees, 99.4% Verified, 4.9/5 Rating*).
-- **Flagship Event of the Month Spotlight:** Highlights a flagship conference with a **live ticking countdown timer** (*Days, Hours, Minutes, Seconds*) updating synchronously every second.
-- **Quick Category Cards:** Interactive 1-click shortcut cards that scroll down and automatically filter the event catalog.
-
-### 🔍 B. Search, Filter & View Controls
-- **Instant Search:** Debounced real-time search across event titles, venue names, cities, and keywords.
-- **Category Filter Pills:** Rapid filtering by *All, Technology, Music, Design, Business, Sports, Workshops*.
-- **Secondary Filters:**
-  - **Date Filter:** *All Dates, Next 7 Days, Next 30 Days*.
-  - **Price Filter:** *All, Free Only, Under $50, $50+*.
-  - **Sorting:** *Soonest Date, Most Popular, Price: Low to High, Price: High to Low*.
-- **View Toggle:** Seamlessly switch between a **3-column Card Grid** and a **Detailed List View**.
-- **Clear Filters & Empty State:** User-friendly reset button and informative empty state with a 1-click restore button.
-
-### 📋 C. Interactive Event Cards & Details Modal
-- **Dynamic Event Cards:**
-  - High-resolution imagery with gradient overlay and category badge.
-  - Interactive **Bookmark/Heart button** that saves favorites to `localStorage` with a pop animation.
-  - Formatted date, time, venue address, and pricing tag.
-  - **Live Capacity Progress Bar:** Color-coded capacity indicator (*Emerald* when spots are plentiful, *Amber* when filling fast, *Rose/Sold-Out* when at 100% capacity).
-- **Full-Featured Event Details Modal:**
-  - Rich header banner and logistics overview bar.
-  - Full event narrative description.
-  - Keynote speaker cards with photos, names, and titles.
-  - Interactive schedule timeline/agenda.
-  - Attendee inclusions checklist (*Swag, Lunch, Certificates, etc.*).
-  - Direct organizer contact button.
-
-### ✍️ D. Robust Registration & JavaScript Form Validation
-- **Event Summary Bar:** Automatically locks in the selected event's details.
-- **Field Validation Specifications:**
-  | Field | Validation Rule | Error Feedback |
-  | :--- | :--- | :--- |
-  | **Full Name** | Min 3 chars, max 60 chars, letters, spaces, and hyphens (`/^[a-zA-Z\s'.-]{3,60}$/`) | *"Name must be at least 3 characters long."* |
-  | **Email Address** | Standard RFC compliant email pattern (`/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/`) | *"Please enter a valid email address (e.g. name@domain.com)."* |
-  | **Phone Number** | 10 to 14 numeric digits with format flexibility (`/^(\+?[0-9]{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/`) | *"Please enter a valid 10-digit phone number."* |
-  | **Seat Quantity** | Integer between 1 and 5, cannot exceed remaining event spots | *"Maximum limit is 5 tickets / Only X spots remaining."* |
-  | **Ticket Tier** | General Admission, VIP Pass (+60%), Student Discount (-30%) | Real-time dynamic total price calculation |
-  | **Terms & Conditions** | Mandatory checkbox confirmation | *"You must accept the terms & conditions to proceed."* |
-- **Real-Time Visual Indicators:**
-  - Fields light up with an **Emerald green border** when valid.
-  - Fields highlight with a **Rose red border** and inline message when invalid.
-  - Auto-scroll/focus on the first erroneous field upon form submission.
-- **Audio Chime:** Synthesizes a celebratory 4-note major chord via the native **Web Audio API** upon registration success (no external audio files needed).
-
-### 🎟️ E. Digital Boarding Pass & Export Engine
-- **Airline Boarding Pass Aesthetic:** Rounded card with gradient accent, perforated notches, and booking reference ID (e.g., `EP-849201`).
-- **Dynamic Vector QR Code:** Generated purely client-side via an SVG matrix algorithm seeded deterministically by the booking data.
-- **Print / PDF Support:** Pre-configured `@media print` CSS rules isolate and style the ticket for pristine physical or PDF printing with a single click.
-- **iCalendar (.ics) Export:** Generates an RFC 5545 compliant `.ics` calendar file to add the event directly to **Apple Calendar, Google Calendar, or Microsoft Outlook**.
-
-### 🌟 F. Bonus Challenges Implemented
-1. **Dark & Light Mode:**
-   - Smooth theme switching with custom CSS variables and Tailwind's `dark` class.
-   - Automatically detects user OS color preference and persists selection in `localStorage`.
-2. **Live Event Countdown Timers:**
-   - Real-time countdown clock on the Featured Spotlight and Details Modal, calculating accurate Days, Hours, Minutes, and Seconds.
-3. **Smooth Animations & Micro-Interactions:**
-   - Float animations, pulsing glow badges, modal scale-in, slide-up toasts, and card hover lifts.
-4. **LocalStorage Registration Data Management:**
-   - All bookings persist across browser reloads.
-   - **"My Tickets" Drawer:** Inspect all active bookings anytime.
-   - **Cancel Registration:** Frees up spots and increments available capacity back onto the event in real time.
-5. **Host an Event Portal:**
-   - Allows users/organizers to create custom events with dates, prices, capacity, descriptions, and cover photos, immediately publishing them to the live catalog.
+| Framework | Role in Platform |
+| :--- | :--- |
+| **GreenSock GSAP 3** | High-performance timeline animation engine for hero word-by-word staggered entrance, spotlight card reveals, and dynamic event card entrance animations. |
+| **GSAP ScrollTrigger** | Scroll-driven parallax on the hero spotlight image, scroll-triggered section fade-ups, and scroll reading progress bar synchronization. |
+| **Lenis Smooth Scroll** | Inertial momentum scrolling providing a fluid 60Hz/120Hz luxury agency feel across all viewports. |
+| **Canvas Confetti** | Multi-stage physics particle confetti burst on successful pass booking and ticket verification check-in. |
+| **Magnetic Cursor Physics** | Interactive buttons (`.magnetic-btn`) that subtly follow cursor position with elastic return physics. |
+| **3D Perspective Card Tilt** | Interactive cursor-following tilt with dynamic radial glare reflections on desktop cards. |
 
 ---
 
-## 📂 4. Project Architecture & Directory Structure
+## ✨ 4. Key Functional Features
 
-```text
-k-explore-event-management/
-├── index.html              # Main semantic HTML5 document
-├── css/
-│   └── styles.css          # Custom styling, glassmorphism, animations & print rules
+### 📅 A. Interactive Month Calendar View
+- Displays a responsive monthly calendar grid.
+- Highlights days that have scheduled events with color indicators and event preview pills.
+- Clicking any date filters and displays the exact events happening on that day.
+- Easy month-to-month navigation with previous/next controls.
+
+### 🌐 B. Multi-Currency Global Converter
+- Real-time currency selector in the header (**USD `$`, EUR `€`, GBP `£`, INR `₹`, CAD `CA$`**).
+- Dynamically recalculates and formats prices across the hero spotlight, catalog cards, filter results, registration modal, and generated boarding pass.
+
+### 🎟️ C. Digital Boarding Pass Ticket
+- Deterministic vector QR code SVG rendered locally without third-party image tracking.
+- One-click RFC 5545 iCalendar (`.ics`) file download that syncs to Google Calendar, Apple Calendar, and Outlook.
+- Clean printable boarding pass layout formatted for print and PDF export.
+
+### 🔍 D. Organizer Ticket Scanner & Check-in Tool
+- Dedicated verification portal accessible directly from the header.
+- Enter a booking reference ID (`PLS-XXXXXX`) or paste QR code JSON data.
+- Instantly verifies ticket authenticity, marks attendee as **Checked In**, displays attendee identity, and triggers celebratory chime + confetti!
+- Prevents duplicate check-ins with clear warning indicators.
+
+### 📁 E. Local Data Management & Export
+- LocalStorage persistence for events, registrations, favorites, theme, and audio preferences.
+- Cancelling a registration immediately restores available seat capacity.
+- Attendees and organizers can export registered passes to **JSON** or **CSV** anytime from the "My Passes" drawer.
+
+### 🔊 F. Web Audio API Sound Design
+- Custom synthesized sound effects built with the Web Audio API (zero audio files needed).
+- Includes micro-clicks for buttons, smooth whoosh for modal reveals, and a 4-note harmonious chime for completed reservations.
+- Accessible mute/unmute toggle in the navbar.
+
+---
+
+## 💻 5. TypeScript Project Architecture
+
+```
+k-explore-web-designing/
+├── src/                          # TypeScript Source Code
+│   ├── types/
+│   │   └── index.ts              # Strongly typed interfaces & domain models
+│   ├── data/
+│   │   └── events.ts             # Curated seed events dataset
+│   ├── services/
+│   │   ├── storage.ts            # LocalStorage CRUD & export manager
+│   │   ├── validation.ts         # Form validation engine
+│   │   ├── ticket.ts             # QR Code SVG, iCal & Boarding Pass generator
+│   │   ├── currency.ts           # Multi-currency converter
+│   │   └── audio.ts              # Web Audio API procedural sound engine
+│   ├── animations/
+│   │   └── gsap-orchestrator.ts  # GSAP, ScrollTrigger, Lenis & Confetti
+│   ├── components/
+│   │   ├── calendar.ts           # Interactive month calendar grid component
+│   │   └── scanner.ts            # Pass scanner & verification tool
+│   └── app.ts                    # Main application orchestrator
+├── dist/                         # Compiled JavaScript modules
 ├── js/
-│   ├── events-data.js      # 12+ curated seed events dataset
-│   ├── storage.js          # LocalStorage CRUD manager (bookings, events, favorites, theme)
-│   ├── validation.js       # Real-time regex form validator & field status controller
-│   ├── ticket.js           # SVG QR generator, boarding pass markup & .ics exporter
-│   └── app.js              # Application orchestrator, search/filter engine & modals
+│   └── bundle.js                 # Production self-executing bundle (IIFE)
+├── css/
+│   └── styles.css                # Plus Jakarta Sans, scroll reveal & tilt styling
 ├── tests/
-│   └── test-suite.js       # Automated Node.js unit test suite (30 passing tests)
-├── assets/                 # Static branding assets
-├── .gitignore              # Git ignore rules
-└── README.md               # Comprehensive project documentation
+│   ├── test-suite.js             # 30 Core automated unit tests
+│   └── ts-test-suite.js          # 25 TypeScript advanced feature tests
+├── index.html                    # Responsive semantic HTML5 single-page application
+├── tsconfig.json                 # Strict TypeScript configuration
+├── package.json                  # Scripts, dependencies & project metadata
+└── README.md                     # Comprehensive project documentation
 ```
 
 ---
 
-## 🧪 5. Testing & Verification
+## 🛠️ 6. Getting Started & Development
 
-The project includes an automated test suite verifying dataset integrity, storage operations, spot capacity arithmetic, regex validation rules, and QR code rendering.
+### Prerequisites
+- Node.js (v18 or higher)
+- npm
 
-To run the test suite locally:
+### Installation
 ```bash
-node tests/test-suite.js
+# Clone the repository
+git clone https://github.com/<your-username>/k-explore-event-management.git
+cd k-explore-event-management
+
+# Install dependencies (TypeScript & esbuild)
+npm install
 ```
 
-### Test Suite Output:
-```text
+### Available Scripts
+```bash
+# Typecheck TypeScript source files
+npm run typecheck
+
+# Build and bundle TypeScript to js/bundle.js
+npm run build
+
+# Run complete automated test suite (55 tests)
+npm test
+
+# Serve locally on port 3000
+npm run serve
+```
+
+---
+
+## 🧪 7. Automated Test Suite (55 Passing Tests)
+
+The project includes two automated test suites covering data integrity, storage operations, input validation, currency conversion, ticket generation, and scanner check-ins:
+
+```
 === RUNNING PULSEEVENT AUTOMATED TEST SUITE ===
 [PASS] Seed events dataset contains at least 12 events
 [PASS] At least one event is marked as featured for the spotlight banner
@@ -171,78 +194,40 @@ node tests/test-suite.js
 [PASS] QR Code SVG renders valid vector markup
 [PASS] Ticket HTML renders booking reference and attendee details
 
+=== RUNNING TYPESCRIPT ADVANCED FEATURES TEST SUITE ===
+[PASS] TypeScript source file exists: src/types/index.ts
+[PASS] TypeScript source file exists: src/data/events.ts
+[PASS] TypeScript source file exists: src/services/storage.ts
+[PASS] TypeScript source file exists: src/services/validation.ts
+[PASS] TypeScript source file exists: src/services/ticket.ts
+[PASS] TypeScript source file exists: src/services/currency.ts
+[PASS] TypeScript source file exists: src/services/audio.ts
+[PASS] TypeScript source file exists: src/animations/gsap-orchestrator.ts
+[PASS] TypeScript source file exists: src/components/calendar.ts
+[PASS] TypeScript source file exists: src/components/scanner.ts
+[PASS] TypeScript source file exists: src/app.ts
+[PASS] Compiled bundle js/bundle.js exists
+[PASS] Bundle size is robust (125.9 KB)
+[PASS] CurrencyManager formats free event as Free
+[PASS] CurrencyManager formats USD default price
+[PASS] CurrencyManager converts and formats EUR correctly
+[PASS] CurrencyManager converts and formats INR correctly
+[PASS] StorageManager loads 12 initial events from TypeScript seed data
+[PASS] Booking ID generated with PLS- prefix
+[PASS] New booking is initially not checked in
+[PASS] Scanner verifies valid booking pass successfully
+[PASS] Scanner prevents double check-in of the same pass
+[PASS] Scanner rejects non-existent booking ID
+[PASS] Successfully added event review to storage
+[PASS] Event reviews list updated
+
 ========================================
-TEST RESULTS: 30 PASSED, 0 FAILED
+TOTAL: 55 PASSED, 0 FAILED
 ========================================
 ```
 
 ---
 
-## 💻 6. How to Run Locally
+## 📄 8. License
 
-Because the project is built with zero-build-step HTML5, modern CSS, and vanilla ES6+ JavaScript, you can run it immediately without needing `npm install`!
-
-### Option A: Open Directly
-Double-click `index.html` in your file explorer to open it in any modern browser (Chrome, Edge, Firefox, Safari).
-
-### Option B: Local Python HTTP Server
-```bash
-# In the project directory:
-python -m http.server 3000
-```
-Then visit `http://localhost:3000` in your web browser.
-
-### Option C: Node.js / npx serve
-```bash
-npx serve .
-```
-
----
-
-## 🌐 7. Step-by-Step Deployment Guide
-
-### A. Deploy to Vercel (Recommended)
-1. Push your code to a GitHub repository:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: initial commit for K Explore event management website"
-   git remote add origin https://github.com/<your-username>/k-explore-event-management.git
-   git push -u origin main
-   ```
-2. Go to [vercel.com](https://vercel.com) and log in.
-3. Click **"Add New Project"** and import your GitHub repository.
-4. Leave build settings as default (Static HTML) and click **"Deploy"**.
-5. Your website will be live with an SSL HTTPS URL in under 30 seconds!
-
-### B. Deploy to Netlify
-1. Log in to [netlify.com](https://netlify.com).
-2. Click **"Add new site"** > **"Import an existing project"** > **GitHub**.
-3. Select your repository.
-4. Set publish directory to `.` (root) and click **"Deploy site"**.
-
-### C. Deploy to GitHub Pages
-1. In your GitHub repository, navigate to **Settings** > **Pages**.
-2. Under **Build and deployment** > **Source**, choose **Deploy from a branch**.
-3. Select the `main` branch and `/ (root)` folder, then click **Save**.
-4. Your website will be accessible at `https://<your-username>.github.io/<repo-name>/`.
-
----
-
-## 📊 8. Evaluation Criteria Self-Checklist
-
-| Evaluation Criteria | Implementation Status | Evidence / Notes |
-| :--- | :---: | :--- |
-| **Creativity** | ✅ Exceeded | Boarding-pass digital ticket with vector QR code, sound synthesizer, countdown timers, host event portal. |
-| **UI / UX** | ✅ Exceeded | Glassmorphism, smooth micro-interactions, toast notifications, bookmark hearts, grid/list switcher. |
-| **Functionality** | ✅ 100% Complete | Full search & filter engine, registration modal, spots decrement/restore, iCalendar export. |
-| **Form Validation** | ✅ 100% Complete | Strict regex validation for name, email, phone, ticket bounds, and terms agreement with visual cues. |
-| **Responsiveness** | ✅ 100% Complete | Fully fluid layout across mobile (360px+), tablet, laptop, and ultra-wide screens with mobile drawer. |
-| **Code Quality** | ✅ Clean & Modular | Separated data, storage, validation, ticket, and application scripts with zero external bundle bloat. |
-| **Documentation** | ✅ Comprehensive | Detailed README with problem statement, architecture, tests, and deployment guides. |
-
----
-
-## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
-Built with ❤️ for the **K Explore Web Designing Challenge**.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
