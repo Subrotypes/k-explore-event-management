@@ -1,6 +1,6 @@
 /**
- * PulseEvent - Main Application Orchestrator
- * High-Impact Typography, Scroll-Driven Reveal Animations & Counter Rollups
+ * PulseEvent - Kinetic Orchestrator
+ * Syne Typography, 3D Cursor Tilt, Continuous Ticker, Scroll Reveals & Counter Rollups
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * Scroll Reveal Observer for Smooth Section Animations
+   * Scroll-Driven Reveal Observer
    */
   function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal-on-scroll");
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }, {
-      threshold: 0.1,
+      threshold: 0.08,
       rootMargin: "0px 0px -40px 0px"
     });
 
@@ -185,6 +185,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.2 });
 
     observer.observe(ribbon);
+  }
+
+  /**
+   * 3D Card Tilt with Dynamic Cursor Glare Tracking
+   */
+  function attachTiltEffects() {
+    // Only apply on non-touch devices for silky smooth 60fps performance
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    document.querySelectorAll(".tilt-card").forEach(card => {
+      const glare = card.querySelector(".tilt-glare");
+
+      card.onmousemove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+
+        card.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        if (glare) {
+          glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.22), transparent 60%)`;
+        }
+      };
+
+      card.onmouseleave = () => {
+        card.style.transform = "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        if (glare) {
+          glare.style.background = "transparent";
+        }
+      };
+    });
   }
 
   /**
@@ -428,9 +465,9 @@ document.addEventListener("DOMContentLoaded", () => {
     DOM.noResultsState.classList.add("hidden");
 
     if (AppState.viewMode === "grid") {
-      DOM.eventsContainer.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8";
+      DOM.eventsContainer.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8";
     } else {
-      DOM.eventsContainer.className = "flex flex-col gap-5";
+      DOM.eventsContainer.className = "flex flex-col gap-6";
     }
 
     DOM.eventsContainer.innerHTML = AppState.filteredEvents
@@ -438,10 +475,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
 
     attachCardListeners();
+    attachTiltEffects();
   }
 
   /**
-   * BOLD, IMPACTFUL & ANIMATED Event Card Markup
+   * 3D TILT READY, BOLD SYNE EVENT CARD MARKUP
    */
   function createEventCardHTML(ev, viewMode, index = 0) {
     const isFav = StorageManager.isFavorite(ev.id);
@@ -460,139 +498,147 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (viewMode === "list") {
       return `
-        <article class="group relative bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 p-5 sm:p-6 card-hover-effect flex flex-col md:flex-row gap-6 items-stretch shadow-md">
-          <!-- Thumbnail -->
-          <div class="relative w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden shrink-0">
-            <img src="${ev.image}" alt="${ev.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
-            <span class="absolute top-3 left-3 ${badgeCategoryClass} shadow-md">
-              ${ev.category}
-            </span>
-            <button class="favorite-toggle-btn absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md flex items-center justify-center text-zinc-400 hover:text-rose-500 transition-colors shadow-sm" data-id="${ev.id}" aria-label="Favorite">
-              <svg class="w-4 h-4 ${isFav ? "fill-rose-500 text-rose-500" : "fill-none"}" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
-            </button>
-          </div>
+        <div class="tilt-card-wrapper">
+          <article class="tilt-card group relative bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 p-6 flex flex-col md:flex-row gap-6 items-stretch shadow-xl">
+            <div class="tilt-glare"></div>
 
-          <!-- Body -->
-          <div class="flex-1 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between gap-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-2 font-mono font-bold">
-                <div class="flex items-center gap-1.5">
-                  <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                  <span>${ev.displayDate} • ${ev.time}</span>
-                </div>
-                <span class="text-lg font-black text-zinc-900 dark:text-zinc-100 font-heading">${priceDisplay}</span>
-              </div>
-
-              <h3 class="text-xl sm:text-2xl font-black font-heading text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug tracking-tight">
-                ${ev.title}
-              </h3>
-
-              <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1 flex items-center gap-1.5 font-medium">
-                <svg class="w-4 h-4 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                <span class="truncate">${ev.venue}, ${ev.city}</span>
-              </p>
-
-              <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 mt-3 line-clamp-2 leading-relaxed">
-                ${ev.shortDesc}
-              </p>
+            <!-- Thumbnail -->
+            <div class="relative w-full md:w-72 h-52 md:h-auto rounded-2xl overflow-hidden shrink-0">
+              <img src="${ev.image}" alt="${ev.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
+              <span class="absolute top-3.5 left-3.5 ${badgeCategoryClass} shadow-md">
+                ${ev.category}
+              </span>
+              <button class="favorite-toggle-btn absolute top-3.5 right-3.5 w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md flex items-center justify-center text-zinc-400 hover:text-rose-500 transition-colors shadow-md z-20" data-id="${ev.id}" aria-label="Favorite">
+                <svg class="w-5 h-5 ${isFav ? "fill-rose-500 text-rose-500" : "fill-none"}" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </button>
             </div>
 
-            <!-- Footer & Actions -->
-            <div class="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4">
-              <div class="w-full sm:w-48">
-                <div class="flex justify-between text-xs text-zinc-500 dark:text-zinc-400 mb-1 font-mono font-bold">
-                  <span>${isSoldOut ? "Sold Out" : `${spotsLeft} spots left`}</span>
-                  <span>${percentFilled}%</span>
+            <!-- Body -->
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-2 font-mono font-bold">
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span>${ev.displayDate} • ${ev.time}</span>
+                  </div>
+                  <span class="text-xl font-black font-syne text-zinc-900 dark:text-zinc-100">${priceDisplay}</span>
                 </div>
-                <div class="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                  <div class="h-full rounded-full transition-all duration-300 ${percentFilled > 85 ? "bg-rose-500" : "bg-indigo-600 dark:bg-indigo-400"}" style="width: ${percentFilled}%"></div>
-                </div>
+
+                <h3 class="text-xl sm:text-2xl font-black font-syne text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug tracking-tight">
+                  ${ev.title}
+                </h3>
+
+                <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1.5 flex items-center gap-1.5 font-medium">
+                  <svg class="w-4 h-4 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                  <span class="truncate">${ev.venue}, ${ev.city}</span>
+                </p>
+
+                <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 mt-3 line-clamp-2 leading-relaxed">
+                  ${ev.shortDesc}
+                </p>
               </div>
 
-              <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                <button class="view-details-btn px-4 py-2 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
-                  Details
-                </button>
-                <button class="quick-register-btn px-5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-black transition-all shadow-md disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
-                  ${isSoldOut ? "Sold Out" : "Register"}
-                </button>
+              <!-- Footer & Actions -->
+              <div class="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4">
+                <div class="w-full sm:w-52">
+                  <div class="flex justify-between text-xs text-zinc-500 dark:text-zinc-400 mb-1.5 font-mono font-bold">
+                    <span>${isSoldOut ? "Sold Out" : `${spotsLeft} spots left`}</span>
+                    <span>${percentFilled}%</span>
+                  </div>
+                  <div class="w-full h-2 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-300 ${percentFilled > 85 ? "bg-rose-500" : "bg-indigo-600 dark:bg-indigo-400"}" style="width: ${percentFilled}%"></div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 w-full sm:w-auto z-20">
+                  <button class="view-details-btn px-5 py-2.5 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
+                    Details
+                  </button>
+                  <button class="quick-register-btn px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black font-syne uppercase tracking-wider transition-all shadow-md disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
+                    ${isSoldOut ? "Sold Out" : "Register"}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       `;
     }
 
-    // Grid Card Markup with BIG BOLD Typography & Animations
+    // Grid Card Markup with 3D Tilt and SYNE Typography
     return `
-      <article class="group relative bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 overflow-hidden card-hover-effect flex flex-col justify-between shadow-md">
-        <div>
-          <!-- Thumbnail & Badges -->
-          <div class="relative h-56 w-full overflow-hidden">
-            <img src="${ev.image}" alt="${ev.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/70 via-transparent to-transparent"></div>
+      <div class="tilt-card-wrapper">
+        <article class="tilt-card group relative bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 overflow-hidden flex flex-col justify-between shadow-xl">
+          <div class="tilt-glare"></div>
 
-            <span class="absolute top-3.5 left-3.5 ${badgeCategoryClass} shadow-md">
-              ${ev.category}
-            </span>
+          <div>
+            <!-- Thumbnail & Badges -->
+            <div class="relative h-60 w-full overflow-hidden">
+              <img src="${ev.image}" alt="${ev.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent"></div>
 
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
-              <span class="text-xs font-mono font-bold bg-zinc-900/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 flex items-center gap-1.5">
-                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                ${formattedDate}
+              <span class="absolute top-4 left-4 ${badgeCategoryClass} shadow-md z-10">
+                ${ev.category}
               </span>
-              <span class="text-sm font-black font-heading bg-indigo-600/90 backdrop-blur-md px-3 py-1 rounded-lg border border-indigo-400/30">
-                ${priceDisplay}
-              </span>
+
+              <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between text-white z-10">
+                <span class="text-xs font-mono font-bold bg-zinc-900/85 backdrop-blur-md px-3 py-1 rounded-xl border border-white/10 flex items-center gap-1.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  ${formattedDate}
+                </span>
+                <span class="text-sm font-black font-syne bg-indigo-600/95 backdrop-blur-md px-3.5 py-1 rounded-xl border border-indigo-400/40 shadow-sm">
+                  ${priceDisplay}
+                </span>
+              </div>
+
+              <button class="favorite-toggle-btn absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md flex items-center justify-center text-zinc-400 hover:text-rose-500 transition-colors shadow-md z-20" data-id="${ev.id}" aria-label="Favorite">
+                <svg class="w-5 h-5 ${isFav ? "fill-rose-500 text-rose-500" : "fill-none"}" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </button>
             </div>
 
-            <button class="favorite-toggle-btn absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md flex items-center justify-center text-zinc-400 hover:text-rose-500 transition-colors shadow-sm" data-id="${ev.id}" aria-label="Favorite">
-              <svg class="w-4 h-4 ${isFav ? "fill-rose-500 text-rose-500" : "fill-none"}" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
+            <!-- Card Content -->
+            <div class="p-6">
+              <p class="text-xs text-zinc-400 flex items-center gap-1.5 font-bold truncate mb-2">
+                <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                <span class="truncate">${ev.venue}, ${ev.city}</span>
+              </p>
+
+              <h3 class="text-xl sm:text-2xl font-black font-syne text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight line-clamp-1 tracking-tight">
+                ${ev.title}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-2.5 line-clamp-2 leading-relaxed font-normal">
+                ${ev.shortDesc}
+              </p>
+
+              <!-- Progress Bar -->
+              <div class="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                <div class="flex justify-between text-xs text-zinc-400 font-mono font-bold mb-1.5">
+                  <span>${isSoldOut ? "Sold Out" : `${spotsLeft} spots remaining`}</span>
+                  <span>${percentFilled}%</span>
+                </div>
+                <div class="w-full h-2 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                  <div class="h-full rounded-full transition-all duration-300 ${percentFilled > 85 ? "bg-rose-500" : "bg-indigo-600 dark:bg-indigo-400"}" style="width: ${percentFilled}%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Action Footer -->
+          <div class="px-6 pb-6 pt-0 flex items-center gap-3 z-20">
+            <button class="view-details-btn flex-1 py-3 rounded-2xl border-2 border-zinc-200 dark:border-zinc-700 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
+              View Details
+            </button>
+            <button class="quick-register-btn flex-1 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black font-syne uppercase tracking-wider transition-all shadow-md shadow-indigo-600/25 disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
+              ${isSoldOut ? "Sold Out" : "Register"}
             </button>
           </div>
-
-          <!-- Card Content -->
-          <div class="p-6">
-            <p class="text-xs text-zinc-400 flex items-center gap-1.5 font-medium truncate mb-2">
-              <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-              <span class="truncate">${ev.venue}, ${ev.city}</span>
-            </p>
-
-            <h3 class="text-xl sm:text-2xl font-black font-heading text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight line-clamp-1 tracking-tight">
-              ${ev.title}
-            </h3>
-
-            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-2.5 line-clamp-2 leading-relaxed">
-              ${ev.shortDesc}
-            </p>
-
-            <!-- Hairline Progress Bar -->
-            <div class="mt-5 pt-3.5 border-t border-zinc-100 dark:border-zinc-800">
-              <div class="flex justify-between text-xs text-zinc-400 font-mono font-bold mb-1.5">
-                <span>${isSoldOut ? "Sold Out" : `${spotsLeft} spots remaining`}</span>
-                <span>${percentFilled}%</span>
-              </div>
-              <div class="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                <div class="h-full rounded-full transition-all duration-300 ${percentFilled > 85 ? "bg-rose-500" : "bg-indigo-600 dark:bg-indigo-400"}" style="width: ${percentFilled}%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card Action Footer -->
-        <div class="px-6 pb-6 pt-0 flex items-center gap-3">
-          <button class="view-details-btn flex-1 py-2.5 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
-            View Details
-          </button>
-          <button class="quick-register-btn flex-1 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-black transition-all shadow-md disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
-            ${isSoldOut ? "Sold Out" : "Register"}
-          </button>
-        </div>
-      </article>
+        </article>
+      </div>
     `;
   }
 
@@ -640,59 +686,59 @@ document.addEventListener("DOMContentLoaded", () => {
     const badgeCategoryClass = `cat-pill cat-pill-${event.categoryKey || "tech"}`;
 
     const speakersHTML = (event.speakers || []).map(sp => `
-      <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/80 dark:border-zinc-800">
-        <img src="${sp.avatar}" alt="${sp.name}" class="w-12 h-12 rounded-xl object-cover shrink-0" />
+      <div class="flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border-2 border-zinc-200/80 dark:border-zinc-800">
+        <img src="${sp.avatar}" alt="${sp.name}" class="w-14 h-14 rounded-2xl object-cover shrink-0" />
         <div>
-          <h5 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">${sp.name}</h5>
-          <p class="text-xs text-zinc-400">${sp.role}</p>
+          <h5 class="text-base font-black font-syne text-zinc-900 dark:text-zinc-100">${sp.name}</h5>
+          <p class="text-xs text-zinc-400 font-medium">${sp.role}</p>
         </div>
       </div>
     `).join("");
 
     const agendaHTML = (event.agenda || []).map(item => `
-      <div class="flex gap-4 items-start relative pl-6 pb-6 last:pb-0 border-l-2 border-indigo-500/30 ml-2">
+      <div class="flex gap-4 items-start relative pl-6 pb-6 last:pb-0 border-l-2 border-indigo-500/40 ml-2">
         <span class="absolute -left-2 top-0.5 w-3.5 h-3.5 rounded-full bg-indigo-600 border-2 border-white dark:border-zinc-900"></span>
         <div>
           <span class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400">${item.time}</span>
-          <h5 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">${item.title}</h5>
+          <h5 class="text-base font-bold font-syne text-zinc-900 dark:text-zinc-100 mt-0.5">${item.title}</h5>
         </div>
       </div>
     `).join("");
 
     const perksHTML = (event.perks || []).map(perk => `
-      <li class="flex items-center gap-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-medium">
+      <li class="flex items-center gap-3 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-semibold">
         <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
         <span>${perk}</span>
       </li>
     `).join("");
 
     DOM.eventDetailsContent.innerHTML = `
-      <div class="relative h-64 sm:h-80 w-full overflow-hidden">
+      <div class="relative h-72 sm:h-96 w-full overflow-hidden">
         <img src="${event.image}" alt="${event.title}" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
 
-        <span class="absolute top-6 left-6 ${badgeCategoryClass} shadow-lg">
+        <span class="absolute top-6 left-6 ${badgeCategoryClass} shadow-xl">
           ${event.category}
         </span>
 
         <div class="absolute bottom-6 left-6 right-6 text-white">
-          <div class="flex items-center gap-2 text-xs sm:text-sm font-mono text-zinc-300 mb-2">
+          <div class="flex items-center gap-2 text-xs sm:text-sm font-mono text-zinc-300 mb-2 font-bold">
             <span>${event.displayDate}</span>
             <span>•</span>
             <span>${event.time}</span>
           </div>
-          <h2 class="text-2xl sm:text-4xl font-black font-heading leading-tight text-white tracking-tight">
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black font-syne leading-tight text-white tracking-tight">
             ${event.title}
           </h2>
         </div>
       </div>
 
-      <div class="p-6 sm:p-8 space-y-8">
+      <div class="p-6 sm:p-10 space-y-8">
         <!-- Key Meta Metrics -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200/80 dark:border-zinc-800 text-xs sm:text-sm">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border-2 border-zinc-200/80 dark:border-zinc-800 text-xs sm:text-sm">
           <div>
             <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Pass Price</span>
-            <p class="text-base font-black font-heading text-zinc-900 dark:text-zinc-100 mt-0.5">${event.isFree ? "Free Entry" : `$${event.price}`}</p>
+            <p class="text-lg font-black font-syne text-zinc-900 dark:text-zinc-100 mt-0.5">${event.isFree ? "Free Entry" : `$${event.price}`}</p>
           </div>
           <div>
             <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Venue</span>
@@ -719,8 +765,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ${(event.speakers && event.speakers.length > 0) ? `
           <div>
-            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-3">Distinguished Speakers</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-4">Distinguished Speakers</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               ${speakersHTML}
             </div>
           </div>
@@ -735,7 +781,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ${(event.perks && event.perks.length > 0) ? `
           <div>
-            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-3">What's Included</h4>
+            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-3">Included with Your Pass</h4>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               ${perksHTML}
             </ul>
@@ -743,27 +789,27 @@ document.addEventListener("DOMContentLoaded", () => {
         ` : ""}
 
         <!-- Organizer -->
-        <div class="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/80 dark:border-zinc-800">
-          <div class="flex items-center gap-3">
-            <img src="${event.organizer.avatar}" alt="${event.organizer.name}" class="w-10 h-10 rounded-full object-cover" />
+        <div class="flex items-center justify-between p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border-2 border-zinc-200/80 dark:border-zinc-800">
+          <div class="flex items-center gap-3.5">
+            <img src="${event.organizer.avatar}" alt="${event.organizer.name}" class="w-12 h-12 rounded-full object-cover" />
             <div>
               <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Host & Organizer</span>
-              <p class="text-sm font-bold text-zinc-900 dark:text-zinc-100">${event.organizer.name}</p>
+              <p class="text-base font-bold font-syne text-zinc-900 dark:text-zinc-100">${event.organizer.name}</p>
             </div>
           </div>
-          <a href="mailto:${event.organizer.email}" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
-            Contact Host
+          <a href="mailto:${event.organizer.email}" class="text-xs font-black font-syne uppercase tracking-wider text-indigo-600 dark:text-indigo-400 hover:underline">
+            Contact Host →
           </a>
         </div>
       </div>
 
       <!-- Sticky Footer CTA -->
-      <div class="sticky bottom-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 border-t border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between">
+      <div class="sticky bottom-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl p-6 border-t-2 border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between">
         <div>
           <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Admission Pass</span>
-          <span class="text-2xl font-black font-heading text-zinc-900 dark:text-zinc-100">${event.isFree ? "Free Entry" : `$${event.price}`}</span>
+          <span class="text-2xl font-black font-syne text-zinc-900 dark:text-zinc-100">${event.isFree ? "Free Entry" : `$${event.price}`}</span>
         </div>
-        <button id="modal-register-cta-btn" class="px-7 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-black transition-all shadow-lg shadow-indigo-600/30 disabled:opacity-40" ${isSoldOut ? "disabled" : ""}>
+        <button id="modal-register-cta-btn" class="px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-black font-syne uppercase tracking-wider transition-all shadow-lg shadow-indigo-600/30 disabled:opacity-40" ${isSoldOut ? "disabled" : ""}>
           ${isSoldOut ? "Sold Out" : "Register Now →"}
         </button>
       </div>
@@ -793,10 +839,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     DOM.regEventSummary.innerHTML = `
       <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200/50 dark:border-indigo-800/50">
-        <img src="${event.image}" alt="${event.title}" class="w-14 h-14 rounded-xl object-cover shrink-0" />
+        <img src="${event.image}" alt="${event.title}" class="w-16 h-16 rounded-xl object-cover shrink-0" />
         <div class="flex-1 min-w-0">
           <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">${event.category}</span>
-          <h4 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 truncate">${event.title}</h4>
+          <h4 class="text-sm font-bold font-syne text-zinc-900 dark:text-zinc-100 truncate">${event.title}</h4>
           <p class="text-xs text-zinc-400 mt-0.5 truncate">${event.displayDate} • ${event.venue}</p>
         </div>
       </div>
@@ -1027,7 +1073,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
                 #${reg.bookingId}
               </span>
-              <h4 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-1 leading-snug">${ev.title}</h4>
+              <h4 class="text-sm font-bold font-syne text-zinc-900 dark:text-zinc-100 mt-1 leading-snug">${ev.title}</h4>
               <p class="text-xs text-zinc-400 mt-0.5">${ev.displayDate} • ${ev.venue}</p>
             </div>
             <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 shrink-0">
