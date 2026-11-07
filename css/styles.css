@@ -15,23 +15,6 @@ html {
   letter-spacing: 0;
 }
 
-/* Lenis Smooth Scroll Optimization */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
 /* Magnetic Button Physics */
 .magnetic-btn {
   display: inline-flex;
@@ -44,6 +27,7 @@ html.lenis, html.lenis body {
 body {
   transition: background-color 0.25s ease, color 0.25s ease;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .font-mono {
@@ -73,57 +57,61 @@ body {
 /* Slide Up with Heavy Momentum */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(35px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.scroll-reveal.is-active {
-  opacity: 1;
-  transform: translateY(0);
+.scroll-reveal.is-active,
+.scroll-reveal.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Slide in from Left */
 .scroll-slide-left {
   opacity: 0;
-  transform: translateX(-70px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-40px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.scroll-slide-left.is-active {
-  opacity: 1;
-  transform: translateX(0);
+.scroll-slide-left.is-active,
+.scroll-slide-left.is-revealed {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 /* Slide in from Right */
 .scroll-slide-right {
   opacity: 0;
-  transform: translateX(70px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(40px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.scroll-slide-right.is-active {
-  opacity: 1;
-  transform: translateX(0);
+.scroll-slide-right.is-active,
+.scroll-slide-right.is-revealed {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 /* Scale & Pop */
 .scroll-scale-up {
   opacity: 0;
-  transform: scale(0.92) translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.95) translateY(25px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.scroll-scale-up.is-active {
-  opacity: 1;
-  transform: scale(1) translateY(0);
+.scroll-scale-up.is-active,
+.scroll-scale-up.is-revealed {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
 }
 
 /* Stagger Delays for Cards */
@@ -133,6 +121,17 @@ body {
 .stagger-4 { transition-delay: 240ms; }
 .stagger-5 { transition-delay: 300ms; }
 .stagger-6 { transition-delay: 360ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-slide-left,
+  .scroll-slide-right,
+  .scroll-scale-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* ========================================================================= */
 /* Infinite Ticker (Clean Simple Monochrome)                                */

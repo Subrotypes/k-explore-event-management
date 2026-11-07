@@ -161,6 +161,130 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
+   * Reading Scroll Progress Bar
+   */
+  function initScrollProgressBar(): void {
+    const bar = document.getElementById("scroll-progress-bar");
+    if (!bar) return;
+
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      bar.style.width = pct + "%";
+    }, { passive: true });
+  }
+
+  /**
+   * Scroll-Driven Reveal Observer (Smooth slide and scale animations on scroll)
+   */
+  let scrollObserver: IntersectionObserver | null = null;
+
+  function initScrollReveal(): void {
+    if (typeof IntersectionObserver !== "undefined") {
+      scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-active", "is-revealed");
+          }
+        });
+      }, {
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px"
+      });
+
+      observeScrollElements(document);
+    } else {
+      document.querySelectorAll(".scroll-reveal, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up, .reveal-on-scroll")
+        .forEach(el => el.classList.add("is-active", "is-revealed"));
+    }
+
+    // High-reliability safeguard: immediately activate elements in/near viewport
+    document.querySelectorAll(".scroll-reveal, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up, .reveal-on-scroll")
+      .forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < (window.innerHeight || document.documentElement.clientHeight) + 100) {
+          el.classList.add("is-active", "is-revealed");
+        }
+      });
+
+    // Ultimate fallback safeguard: guarantee 100% visibility after 200ms
+    setTimeout(() => {
+      document.querySelectorAll(".scroll-reveal, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up, .reveal-on-scroll")
+        .forEach(el => el.classList.add("is-active", "is-revealed"));
+    }, 200);
+  }
+
+  function observeScrollElements(root: ParentNode = document): void {
+    const targets = root.querySelectorAll(
+      ".scroll-reveal, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up, .reveal-on-scroll"
+    );
+    targets.forEach(el => {
+      if (scrollObserver) {
+        scrollObserver.observe(el);
+      } else {
+        el.classList.add("is-active", "is-revealed");
+      }
+    });
+  }
+
+  /**
+   * Animated Counter Roll-up for Platform Metrics
+   */
+  function initStatsCounter(): void {
+    const ribbon = document.getElementById("stats-ribbon");
+    if (!ribbon) return;
+
+    let animated = false;
+    const animateAllCounters = () => {
+      if (animated) return;
+      animated = true;
+      const counters = document.querySelectorAll<HTMLElement>(".stat-counter");
+      counters.forEach(counter => {
+        const target = parseFloat(counter.dataset.target || "0");
+        const suffix = counter.dataset.suffix || "";
+        const isFormatCompact = counter.dataset.format === "compact";
+        const duration = 1600;
+        const start = performance.now();
+
+        function updateCounter(now: number) {
+          const progress = Math.min(1, (now - start) / duration);
+          const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          const current = target * ease;
+
+          if (isFormatCompact) {
+            counter.textContent = Math.round(current / 1000) + "k" + suffix;
+          } else if (target % 1 !== 0) {
+            counter.textContent = current.toFixed(1) + suffix;
+          } else {
+            counter.textContent = Math.round(current) + suffix;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          }
+        }
+
+        requestAnimationFrame(updateCounter);
+      });
+    };
+
+    if (typeof IntersectionObserver !== "undefined") {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateAllCounters();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(ribbon);
+    } else {
+      animateAllCounters();
+    }
+  }
+
+  /**
    * Theme Switcher
    */
   function initTheme(): void {
@@ -411,6 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     attachCardListeners();
     attachTiltEffects();
+    observeScrollElements(DOM.eventsContainer);
     AnimationOrchestrator.animateCards(DOM.eventsContainer);
   }
 
@@ -1554,6 +1679,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     initAudioToggle();
     initCurrency();
+    initScrollProgressBar();
+    initScrollReveal();
+    initStatsCounter();
     AnimationOrchestrator.init();
     AppState.events = StorageManager.getEvents();
     setupSpotlightEvent();

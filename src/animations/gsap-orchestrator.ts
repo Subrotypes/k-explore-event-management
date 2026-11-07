@@ -1,58 +1,20 @@
 /**
- * GSAP & Lenis Smooth Animation Orchestrator
- * Integrates GreenSock GSAP 3, ScrollTrigger, Lenis Smooth Scroll, and Canvas Confetti
+ * GSAP Smooth Animation Orchestrator
+ * Integrates GreenSock GSAP 3, ScrollTrigger, and Canvas Confetti
+ * Uses native buttery smooth browser scrolling (zero jitter, zero freeze)
  */
 
 declare const gsap: any;
 declare const ScrollTrigger: any;
-declare const Lenis: any;
 declare const confetti: any;
 
 export class AnimationOrchestrator {
-  private static lenis: any = null;
   private static isGsapReady: boolean = false;
 
   public static init(): void {
-    this.initLenis();
     this.initGSAP();
     this.initMagneticButtons();
     this.initHeroParallax();
-  }
-
-  /**
-   * Smooth Momentum Inertial Scrolling via Lenis
-   */
-  private static initLenis(): void {
-    if (typeof Lenis === "undefined") return;
-
-    try {
-      this.lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2
-      });
-
-      function raf(time: number) {
-        AnimationOrchestrator.lenis?.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      // Connect Lenis to GSAP ScrollTrigger if available
-      if (typeof ScrollTrigger !== "undefined" && typeof gsap !== "undefined") {
-        this.lenis.on("scroll", ScrollTrigger.update);
-        gsap.ticker.add((time: number) => {
-          this.lenis?.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-      }
-    } catch (e) {
-      console.warn("Lenis smooth scroll fallback", e);
-    }
   }
 
   /**
@@ -67,39 +29,71 @@ export class AnimationOrchestrator {
       }
       this.isGsapReady = true;
 
-      // Hero headline entrance
-      gsap.from(".hero-headline-word", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.08,
-        ease: "power4.out",
-        delay: 0.15
-      });
+      // Hero headline entrance with clearProps: "all" so elements never stay hidden
+      gsap.fromTo(
+        ".hero-headline-word",
+        { y: 18, opacity: 0.3 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.45,
+          stagger: 0.05,
+          ease: "power2.out",
+          delay: 0.05,
+          clearProps: "all",
+          onComplete: () => {
+            document.querySelectorAll<HTMLElement>(".hero-headline-word").forEach(el => {
+              el.style.opacity = "1";
+              el.style.transform = "none";
+            });
+          }
+        }
+      );
 
-      // Hero Spotlight entrance
-      gsap.from("#spotlight-card", {
-        y: 60,
-        opacity: 0,
-        duration: 1.1,
-        ease: "power3.out",
-        delay: 0.3
-      });
+      // Hero Spotlight entrance with clearProps: "all"
+      const spotlight = document.getElementById("spotlight-card");
+      if (spotlight) {
+        gsap.fromTo(
+          spotlight,
+          { y: 25, opacity: 0.4 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power2.out",
+            delay: 0.15,
+            clearProps: "all"
+          }
+        );
+      }
+
+      // Safety fallback: guarantee 100% full opacity on hero words after 300ms
+      setTimeout(() => {
+        document.querySelectorAll<HTMLElement>(".hero-headline-word").forEach(el => {
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        });
+      }, 300);
 
       // Section titles reveal on scroll
       if (typeof ScrollTrigger !== "undefined") {
         gsap.utils.toArray(".gsap-fade-up").forEach((el: any) => {
-          gsap.from(el, {
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none"
-            },
-            y: 50,
-            opacity: 0,
-            duration: 0.85,
-            ease: "power3.out"
-          });
+          gsap.fromTo(
+            el,
+            { y: 30, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: el,
+                start: "top 88%",
+                toggleActions: "play none none none"
+              },
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.out",
+              clearProps: "all"
+            }
+          );
         });
       }
     } catch (e) {
@@ -116,17 +110,21 @@ export class AnimationOrchestrator {
     const img = document.getElementById("spotlight-img");
     if (!img) return;
 
-    gsap.to(img, {
-      scrollTrigger: {
-        trigger: "#featured-section",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.2
-      },
-      yPercent: 12,
-      scale: 1.05,
-      ease: "none"
-    });
+    try {
+      gsap.to(img, {
+        scrollTrigger: {
+          trigger: "#featured-section",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2
+        },
+        yPercent: 8,
+        scale: 1.04,
+        ease: "none"
+      });
+    } catch (e) {
+      console.warn("Parallax setup skipped", e);
+    }
   }
 
   /**
@@ -143,9 +141,9 @@ export class AnimationOrchestrator {
 
         if (typeof gsap !== "undefined") {
           gsap.to(btn, {
-            x: x * 0.28,
-            y: y * 0.28,
-            rotation: x * 0.04,
+            x: x * 0.25,
+            y: y * 0.25,
+            rotation: x * 0.03,
             duration: 0.3,
             ease: "power2.out"
           });
@@ -160,7 +158,7 @@ export class AnimationOrchestrator {
             x: 0,
             y: 0,
             rotation: 0,
-            duration: 0.6,
+            duration: 0.5,
             ease: "elastic.out(1, 0.4)"
           });
         } else {
@@ -179,18 +177,23 @@ export class AnimationOrchestrator {
     const cards = container.querySelectorAll(".tilt-card-wrapper");
     if (cards.length === 0) return;
 
-    gsap.fromTo(cards, 
-      { opacity: 0, y: 40, scale: 0.95 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1, 
-        duration: 0.65, 
-        stagger: 0.06, 
-        ease: "power3.out",
-        overwrite: "auto"
-      }
-    );
+    try {
+      gsap.fromTo(cards, 
+        { opacity: 0.4, y: 25, scale: 0.98 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1, 
+          duration: 0.45, 
+          stagger: 0.04, 
+          ease: "power2.out",
+          overwrite: "auto",
+          clearProps: "all"
+        }
+      );
+    } catch (e) {
+      console.warn("Card animation fallback", e);
+    }
   }
 
   /**
