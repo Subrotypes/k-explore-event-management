@@ -1,6 +1,7 @@
 /**
  * PulseEvent - Kinetic Orchestrator
- * Syne Typography, 3D Cursor Tilt, Continuous Ticker, Scroll Reveals & Counter Rollups
+ * EventPulse - Dynamic Orchestrator
+ * Plus Jakarta Sans Typography, 3D Cursor Tilt, Continuous Ticker, Scroll Reveals & Counter Rollups
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -114,14 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
-   * Scroll-Driven Reveal Observer
+   * Scroll-Driven Reveal Observer (Heavy slide and scale animations on scroll)
    */
+  let scrollObserver = null;
+
   function initScrollReveal() {
-    const reveals = document.querySelectorAll(".reveal-on-scroll");
-    const observer = new IntersectionObserver((entries) => {
+    scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("is-revealed");
+          entry.target.classList.add("is-active", "is-revealed");
         }
       });
     }, {
@@ -129,7 +131,15 @@ document.addEventListener("DOMContentLoaded", () => {
       rootMargin: "0px 0px -40px 0px"
     });
 
-    reveals.forEach(el => observer.observe(el));
+    observeScrollElements(document);
+  }
+
+  function observeScrollElements(root = document) {
+    if (!scrollObserver) return;
+    const targets = root.querySelectorAll(
+      ".scroll-reveal, .scroll-slide-left, .scroll-slide-right, .scroll-scale-up, .reveal-on-scroll"
+    );
+    targets.forEach(el => scrollObserver.observe(el));
   }
 
   /**
@@ -476,10 +486,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     attachCardListeners();
     attachTiltEffects();
+    observeScrollElements(DOM.eventsContainer);
   }
 
   /**
-   * 3D TILT READY, BOLD SYNE EVENT CARD MARKUP
+   * 3D TILT READY, CLEAN EVENT CARD MARKUP (Comfortable Typography & Heavy Scroll Animations)
    */
   function createEventCardHTML(ev, viewMode, index = 0) {
     const isFav = StorageManager.isFavorite(ev.id);
@@ -498,8 +509,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (viewMode === "list") {
       return `
-        <div class="tilt-card-wrapper">
-          <article class="tilt-card group relative bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 p-6 flex flex-col md:flex-row gap-6 items-stretch shadow-xl">
+        <div class="tilt-card-wrapper scroll-reveal stagger-${(index % 6) + 1}">
+          <article class="tilt-card group relative bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200/90 dark:border-zinc-800 p-6 flex flex-col md:flex-row gap-6 items-stretch shadow-md hover:shadow-xl transition-all">
             <div class="tilt-glare"></div>
 
             <!-- Thumbnail -->
@@ -518,15 +529,15 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- Body -->
             <div class="flex-1 flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between gap-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-2 font-mono font-bold">
+                <div class="flex items-center justify-between gap-2 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-2 font-mono font-medium">
                   <div class="flex items-center gap-1.5">
                     <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     <span>${ev.displayDate} • ${ev.time}</span>
                   </div>
-                  <span class="text-xl font-black font-syne text-zinc-900 dark:text-zinc-100">${priceDisplay}</span>
+                  <span class="text-xl font-bold text-zinc-900 dark:text-zinc-100">${priceDisplay}</span>
                 </div>
 
-                <h3 class="text-xl sm:text-2xl font-black font-syne text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug tracking-tight">
+                <h3 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
                   ${ev.title}
                 </h3>
 
@@ -543,7 +554,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <!-- Footer & Actions -->
               <div class="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4">
                 <div class="w-full sm:w-52">
-                  <div class="flex justify-between text-xs text-zinc-500 dark:text-zinc-400 mb-1.5 font-mono font-bold">
+                  <div class="flex justify-between text-xs text-zinc-500 dark:text-zinc-400 mb-1.5 font-mono font-medium">
                     <span>${isSoldOut ? "Sold Out" : `${spotsLeft} spots left`}</span>
                     <span>${percentFilled}%</span>
                   </div>
@@ -553,10 +564,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
                 <div class="flex items-center gap-3 w-full sm:w-auto z-20">
-                  <button class="view-details-btn px-5 py-2.5 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
+                  <button class="view-details-btn px-5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
                     Details
                   </button>
-                  <button class="quick-register-btn px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black font-syne uppercase tracking-wider transition-all shadow-md disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
+                  <button class="quick-register-btn px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
                     ${isSoldOut ? "Sold Out" : "Register"}
                   </button>
                 </div>
@@ -567,10 +578,10 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // Grid Card Markup with 3D Tilt and SYNE Typography
+    // Grid Card Markup with 3D Tilt and Clean Typography
     return `
-      <div class="tilt-card-wrapper">
-        <article class="tilt-card group relative bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 overflow-hidden flex flex-col justify-between shadow-xl">
+      <div class="tilt-card-wrapper scroll-reveal stagger-${(index % 6) + 1}">
+        <article class="tilt-card group relative bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200/90 dark:border-zinc-800 overflow-hidden flex flex-col justify-between shadow-md hover:shadow-xl transition-all">
           <div class="tilt-glare"></div>
 
           <div>
@@ -584,11 +595,11 @@ document.addEventListener("DOMContentLoaded", () => {
               </span>
 
               <div class="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between text-white z-10">
-                <span class="text-xs font-mono font-bold bg-zinc-900/85 backdrop-blur-md px-3 py-1 rounded-xl border border-white/10 flex items-center gap-1.5 shadow-sm">
+                <span class="text-xs font-mono font-medium bg-zinc-900/85 backdrop-blur-md px-3 py-1 rounded-xl border border-white/10 flex items-center gap-1.5 shadow-sm">
                   <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                   ${formattedDate}
                 </span>
-                <span class="text-sm font-black font-syne bg-indigo-600/95 backdrop-blur-md px-3.5 py-1 rounded-xl border border-indigo-400/40 shadow-sm">
+                <span class="text-sm font-bold bg-indigo-600/95 backdrop-blur-md px-3.5 py-1 rounded-xl border border-indigo-400/40 shadow-sm">
                   ${priceDisplay}
                 </span>
               </div>
@@ -602,12 +613,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <!-- Card Content -->
             <div class="p-6">
-              <p class="text-xs text-zinc-400 flex items-center gap-1.5 font-bold truncate mb-2">
+              <p class="text-xs text-zinc-400 flex items-center gap-1.5 font-medium truncate mb-2">
                 <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                 <span class="truncate">${ev.venue}, ${ev.city}</span>
               </p>
 
-              <h3 class="text-xl sm:text-2xl font-black font-syne text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight line-clamp-1 tracking-tight">
+              <h3 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug line-clamp-1">
                 ${ev.title}
               </h3>
 
@@ -617,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               <!-- Progress Bar -->
               <div class="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800">
-                <div class="flex justify-between text-xs text-zinc-400 font-mono font-bold mb-1.5">
+                <div class="flex justify-between text-xs text-zinc-400 font-mono font-medium mb-1.5">
                   <span>${isSoldOut ? "Sold Out" : `${spotsLeft} spots remaining`}</span>
                   <span>${percentFilled}%</span>
                 </div>
@@ -630,10 +641,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <!-- Card Action Footer -->
           <div class="px-6 pb-6 pt-0 flex items-center gap-3 z-20">
-            <button class="view-details-btn flex-1 py-3 rounded-2xl border-2 border-zinc-200 dark:border-zinc-700 text-xs font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
+            <button class="view-details-btn flex-1 py-3 rounded-2xl border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors" data-id="${ev.id}">
               View Details
             </button>
-            <button class="quick-register-btn flex-1 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-black font-syne uppercase tracking-wider transition-all shadow-md shadow-indigo-600/25 disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
+            <button class="quick-register-btn flex-1 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/25 disabled:opacity-40 disabled:cursor-not-allowed" data-id="${ev.id}" ${isSoldOut ? "disabled" : ""}>
               ${isSoldOut ? "Sold Out" : "Register"}
             </button>
           </div>
@@ -686,10 +697,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const badgeCategoryClass = `cat-pill cat-pill-${event.categoryKey || "tech"}`;
 
     const speakersHTML = (event.speakers || []).map(sp => `
-      <div class="flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border-2 border-zinc-200/80 dark:border-zinc-800">
+      <div class="flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/80 dark:border-zinc-800">
         <img src="${sp.avatar}" alt="${sp.name}" class="w-14 h-14 rounded-2xl object-cover shrink-0" />
         <div>
-          <h5 class="text-base font-black font-syne text-zinc-900 dark:text-zinc-100">${sp.name}</h5>
+          <h5 class="text-base font-bold text-zinc-900 dark:text-zinc-100">${sp.name}</h5>
           <p class="text-xs text-zinc-400 font-medium">${sp.role}</p>
         </div>
       </div>
@@ -700,7 +711,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="absolute -left-2 top-0.5 w-3.5 h-3.5 rounded-full bg-indigo-600 border-2 border-white dark:border-zinc-900"></span>
         <div>
           <span class="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400">${item.time}</span>
-          <h5 class="text-base font-bold font-syne text-zinc-900 dark:text-zinc-100 mt-0.5">${item.title}</h5>
+          <h5 class="text-base font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">${item.title}</h5>
         </div>
       </div>
     `).join("");
@@ -727,7 +738,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>•</span>
             <span>${event.time}</span>
           </div>
-          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black font-syne leading-tight text-white tracking-tight">
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
             ${event.title}
           </h2>
         </div>
@@ -735,10 +746,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="p-6 sm:p-10 space-y-8">
         <!-- Key Meta Metrics -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border-2 border-zinc-200/80 dark:border-zinc-800 text-xs sm:text-sm">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200/80 dark:border-zinc-800 text-xs sm:text-sm">
           <div>
             <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Pass Price</span>
-            <p class="text-lg font-black font-syne text-zinc-900 dark:text-zinc-100 mt-0.5">${event.isFree ? "Free Entry" : `$${event.price}`}</p>
+            <p class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">${event.isFree ? "Free Entry" : `$${event.price}`}</p>
           </div>
           <div>
             <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Venue</span>
@@ -757,7 +768,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div>
-          <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-2">Event Overview</h4>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold mb-2">Event Overview</h4>
           <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
             ${event.description}
           </p>
@@ -765,7 +776,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ${(event.speakers && event.speakers.length > 0) ? `
           <div>
-            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-4">Distinguished Speakers</h4>
+            <h4 class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold mb-4">Distinguished Speakers</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               ${speakersHTML}
             </div>
@@ -774,14 +785,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         ${(event.agenda && event.agenda.length > 0) ? `
           <div>
-            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-4">Event Schedule</h4>
+            <h4 class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold mb-4">Event Schedule</h4>
             <div>${agendaHTML}</div>
           </div>
         ` : ""}
 
         ${(event.perks && event.perks.length > 0) ? `
           <div>
-            <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold mb-3">Included with Your Pass</h4>
+            <h4 class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold mb-3">Included with Your Pass</h4>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               ${perksHTML}
             </ul>
@@ -789,27 +800,27 @@ document.addEventListener("DOMContentLoaded", () => {
         ` : ""}
 
         <!-- Organizer -->
-        <div class="flex items-center justify-between p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border-2 border-zinc-200/80 dark:border-zinc-800">
+        <div class="flex items-center justify-between p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/80 dark:border-zinc-800">
           <div class="flex items-center gap-3.5">
             <img src="${event.organizer.avatar}" alt="${event.organizer.name}" class="w-12 h-12 rounded-full object-cover" />
             <div>
               <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Host & Organizer</span>
-              <p class="text-base font-bold font-syne text-zinc-900 dark:text-zinc-100">${event.organizer.name}</p>
+              <p class="text-base font-bold text-zinc-900 dark:text-zinc-100">${event.organizer.name}</p>
             </div>
           </div>
-          <a href="mailto:${event.organizer.email}" class="text-xs font-black font-syne uppercase tracking-wider text-indigo-600 dark:text-indigo-400 hover:underline">
+          <a href="mailto:${event.organizer.email}" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
             Contact Host →
           </a>
         </div>
       </div>
 
       <!-- Sticky Footer CTA -->
-      <div class="sticky bottom-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl p-6 border-t-2 border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between">
+      <div class="sticky bottom-0 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl p-6 border-t border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between">
         <div>
           <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-bold block">Admission Pass</span>
-          <span class="text-2xl font-black font-syne text-zinc-900 dark:text-zinc-100">${event.isFree ? "Free Entry" : `$${event.price}`}</span>
+          <span class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">${event.isFree ? "Free Entry" : `$${event.price}`}</span>
         </div>
-        <button id="modal-register-cta-btn" class="px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-black font-syne uppercase tracking-wider transition-all shadow-lg shadow-indigo-600/30 disabled:opacity-40" ${isSoldOut ? "disabled" : ""}>
+        <button id="modal-register-cta-btn" class="px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold transition-all shadow-lg shadow-indigo-600/30 disabled:opacity-40" ${isSoldOut ? "disabled" : ""}>
           ${isSoldOut ? "Sold Out" : "Register Now →"}
         </button>
       </div>
@@ -842,7 +853,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <img src="${event.image}" alt="${event.title}" class="w-16 h-16 rounded-xl object-cover shrink-0" />
         <div class="flex-1 min-w-0">
           <span class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">${event.category}</span>
-          <h4 class="text-sm font-bold font-syne text-zinc-900 dark:text-zinc-100 truncate">${event.title}</h4>
+          <h4 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 truncate">${event.title}</h4>
           <p class="text-xs text-zinc-400 mt-0.5 truncate">${event.displayDate} • ${event.venue}</p>
         </div>
       </div>
@@ -1073,7 +1084,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
                 #${reg.bookingId}
               </span>
-              <h4 class="text-sm font-bold font-syne text-zinc-900 dark:text-zinc-100 mt-1 leading-snug">${ev.title}</h4>
+              <h4 class="text-sm font-bold text-zinc-900 dark:text-zinc-100 mt-1 leading-snug">${ev.title}</h4>
               <p class="text-xs text-zinc-400 mt-0.5">${ev.displayDate} • ${ev.venue}</p>
             </div>
             <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 shrink-0">
