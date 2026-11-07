@@ -31,11 +31,10 @@ Built with **TypeScript** for strict type safety and orchestrated with **GSAP 3,
 
 ## 🚀 2. Live Demo & Repository
 
-- **GitHub Repository:** `https://github.com/<your-username>/k-explore-event-management`
+- **GitHub Repository:** [https://github.com/Subrotypes/k-explore-event-management](https://github.com/Subrotypes/k-explore-event-management)
 - **Live Deployed Website:** 
-  - **Vercel:** `https://pulse-event-k-explore.vercel.app`
-  - **Netlify:** `https://pulse-event-k-explore.netlify.app`
-  - **GitHub Pages:** `https://<your-username>.github.io/k-explore-event-management/`
+  - **Vercel:** `https://k-explore-event-management.vercel.app` (or deployment URL)
+  - **GitHub Pages:** [https://subrotypes.github.io/k-explore-event-management/](https://subrotypes.github.io/k-explore-event-management/)
 
 ---
 
