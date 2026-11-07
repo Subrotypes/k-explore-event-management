@@ -16,6 +16,7 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+            heading: ['"Space Grotesk"', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
           },
           colors: {
@@ -42,74 +43,82 @@
   <!-- Google Fonts & Custom CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
-<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-950">
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased selection:bg-indigo-600 selection:text-white">
+
+  <!-- TOP SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- AMBIENT GLOW ORBS IN BACKGROUND -->
+  <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 dark:bg-indigo-500/15 rounded-full blur-[140px] pointer-events-none -z-10 ambient-orb-1"></div>
+  <div class="fixed top-1/3 right-10 w-[600px] h-[600px] bg-purple-500/10 dark:bg-purple-500/15 rounded-full blur-[160px] pointer-events-none -z-10 ambient-orb-2"></div>
+  <div class="fixed bottom-10 left-10 w-[450px] h-[450px] bg-pink-500/10 dark:bg-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
   <!-- ========================================================================= -->
   <!-- NAVIGATION BAR (MINIMALIST GLASS)                                         -->
   <!-- ========================================================================= -->
   <header class="sticky top-0 z-40 w-full glass-header border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2.5 group focus:outline-none">
-        <div class="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center font-bold text-sm tracking-tighter shadow-sm group-hover:scale-105 transition-transform">
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-zinc-900 via-indigo-950 to-zinc-900 dark:from-zinc-100 dark:via-indigo-100 dark:to-white text-white dark:text-zinc-900 flex items-center justify-center font-extrabold text-lg tracking-tighter shadow-md group-hover:scale-105 transition-transform duration-300">
           P
         </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">Pulse<span class="text-zinc-400 font-normal">Event</span></span>
-          <span class="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-mono font-medium rounded-full bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
-            v1.0
+        <div class="flex items-center gap-2.5">
+          <span class="text-lg font-black font-heading tracking-tight text-zinc-900 dark:text-white">Pulse<span class="text-indigo-600 dark:text-indigo-400">Event</span></span>
+          <span class="hidden sm:inline-flex px-2.5 py-0.5 text-[11px] font-mono font-bold rounded-full bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
+            K Explore
           </span>
         </div>
       </a>
 
       <!-- Desktop Center Navigation -->
-      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-        <a href="#featured-section" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Spotlight</a>
-        <a href="#explore-section" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Explore</a>
-        <a href="#categories-section" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Categories</a>
-        <a href="#how-it-works" class="hover:text-zinc-900 dark:hover:text-white transition-colors">About</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-zinc-600 dark:text-zinc-300">
+        <a href="#featured-section" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Spotlight</a>
+        <a href="#explore-section" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Explore Events</a>
+        <a href="#categories-section" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Categories</a>
+        <a href="#how-it-works" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">How It Works</a>
       </nav>
 
       <!-- Right Header Actions -->
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-3">
         
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle-btn" class="w-8 h-8 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center transition-colors" aria-label="Toggle theme">
-          <svg id="theme-icon-light" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="theme-toggle-btn" class="w-10 h-10 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-400 flex items-center justify-center transition-all shadow-sm" aria-label="Toggle theme">
+          <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
           </svg>
-          <svg id="theme-icon-dark" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
           </svg>
         </button>
 
         <!-- "My Tickets" Button -->
-        <button id="my-bookings-btn" class="relative px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white flex items-center gap-1.5 text-xs font-semibold transition-colors">
-          <svg class="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="my-bookings-btn" class="relative px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-zinc-800 dark:text-zinc-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-400 flex items-center gap-2 text-xs font-bold transition-all shadow-sm">
+          <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
           </svg>
           <span class="hidden sm:inline">My Passes</span>
-          <span id="bookings-count-badge" class="w-4 h-4 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-[9px] font-mono font-bold flex items-center justify-center transition-all opacity-0 scale-75">
+          <span id="bookings-count-badge" class="w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] font-mono font-bold flex items-center justify-center transition-all opacity-0 scale-75">
             0
           </span>
         </button>
 
         <!-- Host Event Button -->
-        <button id="host-event-btn" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-semibold transition-all">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="host-event-btn" class="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-bold transition-all shadow-md">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
           </svg>
           <span>Host Event</span>
         </button>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-1.5 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white" aria-label="Menu">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
@@ -118,12 +127,12 @@
     </div>
 
     <!-- Mobile Slide Drawer -->
-    <div id="mobile-menu-drawer" class="hidden md:hidden px-6 py-4 border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl space-y-3 text-xs font-semibold">
-      <a href="#featured-section" class="block py-1.5 text-zinc-700 dark:text-zinc-300">Spotlight Feature</a>
-      <a href="#explore-section" class="block py-1.5 text-zinc-700 dark:text-zinc-300">Explore Events</a>
-      <a href="#categories-section" class="block py-1.5 text-zinc-700 dark:text-zinc-300">Browse Categories</a>
-      <a href="#how-it-works" class="block py-1.5 text-zinc-700 dark:text-zinc-300">How It Works</a>
-      <button onclick="document.getElementById('host-event-btn').click()" class="w-full mt-2 py-2 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-bold">
+    <div id="mobile-menu-drawer" class="hidden md:hidden px-6 py-5 border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl space-y-3 text-sm font-bold">
+      <a href="#featured-section" class="block py-2 text-zinc-800 dark:text-zinc-200">Spotlight Feature</a>
+      <a href="#explore-section" class="block py-2 text-zinc-800 dark:text-zinc-200">Explore Events</a>
+      <a href="#categories-section" class="block py-2 text-zinc-800 dark:text-zinc-200">Browse Categories</a>
+      <a href="#how-it-works" class="block py-2 text-zinc-800 dark:text-zinc-200">How It Works</a>
+      <button onclick="document.getElementById('host-event-btn').click()" class="w-full mt-3 py-3 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-bold shadow-md">
         + Host an Event
       </button>
     </div>
@@ -134,39 +143,38 @@
   <!-- ========================================================================= -->
   <main class="flex-1">
 
-    <!-- HERO SECTION (CLEAN & EDITORIAL) -->
-    <section class="pt-16 pb-16 md:pt-24 md:pb-24 border-b border-zinc-200/80 dark:border-zinc-800/80">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
+    <!-- HERO SECTION (BIG BOLD EDITORIAL WITH SCROLL REVEAL) -->
+    <section class="pt-20 pb-20 md:pt-32 md:pb-32 border-b border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
         
-        <!-- Minimal Badge -->
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-dot"></span>
-          <span>K Explore Web Designing • Curated Event Directory</span>
+        <!-- Live Status Pill Tag -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-live"></span>
+          <span>K Explore 2026 • Premier Event Experience</span>
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.1]">
-          Exceptional events, <br class="hidden sm:inline" />
-          curated for curious minds.
+        <!-- COMMANDING HUGE HERO HEADLINE -->
+        <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-heading tracking-tight leading-[0.95] text-zinc-900 dark:text-white max-w-5xl mx-auto">
+          Discover <span class="gradient-shimmer">Unforgettable</span> Experiences.
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
-          Discover premier tech summits, design symposiums, indie festivals, and masterclasses. Instant digital passes, real-time validation, and seamless calendar integration.
+        <p class="text-lg sm:text-2xl text-zinc-600 dark:text-zinc-300 font-normal max-w-3xl mx-auto leading-relaxed">
+          Curated technology summits, music festivals, design masterclasses, and startup summits. Register in seconds, download verified digital boarding passes, and sync straight to your calendar.
         </p>
 
         <!-- Command-Style Hero Search Box -->
-        <div class="pt-4 max-w-xl mx-auto">
+        <div class="pt-4 max-w-2xl mx-auto">
           <div class="relative flex items-center">
-            <svg class="w-4 h-4 text-zinc-400 absolute left-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-zinc-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            <input id="search-input" type="text" placeholder="Search events, cities, topics... (Press / to search)" class="w-full pl-11 pr-24 py-3 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs sm:text-sm font-medium text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100 shadow-sm transition-all" />
-            <div class="absolute right-3 flex items-center gap-1.5">
+            <input id="search-input" type="text" placeholder="Search by title, speaker, city, or topic... (Press / to search)" class="w-full pl-14 pr-24 py-4 rounded-2xl bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 text-sm sm:text-base font-semibold text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-indigo-600 dark:focus:border-indigo-400 shadow-xl transition-all" />
+            <div class="absolute right-4 flex items-center gap-2">
               <button id="search-clear-btn" class="hidden text-zinc-400 hover:text-zinc-600 dark:hover:text-white p-1" aria-label="Clear">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
               </button>
-              <kbd class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded">
+              <kbd class="hidden sm:inline-block px-2 py-1 text-xs font-mono font-bold text-zinc-500 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg">
                 /
               </kbd>
             </div>
@@ -174,32 +182,32 @@
         </div>
 
         <!-- Hero CTAs -->
-        <div class="flex items-center justify-center gap-3 pt-2">
-          <button id="hero-explore-btn" class="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-bold transition-all shadow-sm">
-            Browse All Events
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <button id="hero-explore-btn" class="px-8 py-4 rounded-2xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-sm sm:text-base font-black transition-all shadow-xl hover:-translate-y-0.5">
+            Explore All Events
           </button>
-          <button id="hero-host-btn" class="px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-semibold transition-colors">
-            Publish Event
+          <button id="hero-host-btn" class="px-7 py-4 rounded-2xl border-2 border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-sm sm:text-base font-bold transition-all hover:-translate-y-0.5">
+            Host an Event
           </button>
         </div>
 
-        <!-- Platform Stats Hairline Strip -->
-        <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-zinc-200/80 dark:border-zinc-800/80 max-w-3xl mx-auto">
-          <div>
-            <span class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-mono block">150+</span>
-            <span class="text-[11px] text-zinc-400">Curated Events</span>
+        <!-- BIG STATS WITH COUNTER ROLL-UP ON SCROLL -->
+        <div id="stats-ribbon" class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-zinc-200/80 dark:border-zinc-800/80 max-w-5xl mx-auto">
+          <div class="p-3">
+            <span class="stat-counter text-4xl sm:text-6xl font-black font-heading text-zinc-900 dark:text-white block font-mono" data-target="150" data-suffix="+">150+</span>
+            <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-400 mt-1 block">Curated Events</span>
           </div>
-          <div>
-            <span class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-mono block">45k+</span>
-            <span class="text-[11px] text-zinc-400">Community Attendees</span>
+          <div class="p-3">
+            <span class="stat-counter text-4xl sm:text-6xl font-black font-heading text-zinc-900 dark:text-white block font-mono" data-target="45000" data-format="compact" data-suffix="+">45k+</span>
+            <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-400 mt-1 block">Community Attendees</span>
           </div>
-          <div>
-            <span class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-mono block">99.4%</span>
-            <span class="text-[11px] text-zinc-400">Verified Organizers</span>
+          <div class="p-3">
+            <span class="stat-counter text-4xl sm:text-6xl font-black font-heading text-zinc-900 dark:text-white block font-mono" data-target="99.4" data-suffix="%">99.4%</span>
+            <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-400 mt-1 block">Verified Organizers</span>
           </div>
-          <div>
-            <span class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-mono block">4.9 / 5</span>
-            <span class="text-[11px] text-zinc-400">Satisfaction Rating</span>
+          <div class="p-3">
+            <span class="stat-counter text-4xl sm:text-6xl font-black font-heading text-zinc-900 dark:text-white block font-mono" data-target="4.9" data-suffix=" / 5">4.9 / 5</span>
+            <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-400 mt-1 block">Average Rating</span>
           </div>
         </div>
 
@@ -207,83 +215,90 @@
     </section>
 
     <!-- ======================================================================= -->
-    <!-- FEATURED SPOTLIGHT CARD (MINIMAL LUXURY WITH COUNTDOWN)                 -->
+    <!-- FEATURED SPOTLIGHT CARD (BIG & COMMANDING WITH LIVE COUNTDOWN)          -->
     <!-- ======================================================================= -->
-    <section id="featured-section" class="py-14 max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="featured-section" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
       
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="text-xs font-mono uppercase tracking-wider text-zinc-400">Spotlight of the Month</span>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+            <span class="text-xs font-mono uppercase tracking-widest text-rose-500 font-bold">Featured Spotlight</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-zinc-900 dark:text-white tracking-tight">
+            Flagship Event of the Month
+          </h2>
         </div>
-        <span class="text-xs font-mono text-zinc-400 hidden sm:inline">Live Ticking Timer</span>
+        <span class="text-xs sm:text-sm font-mono text-zinc-400">Synchronous Live Countdown</span>
       </div>
 
-      <!-- Spotlight Card -->
-      <div class="relative rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800/90 overflow-hidden card-elevation">
+      <!-- Spotlight Grand Card -->
+      <div class="relative rounded-3xl bg-white dark:bg-zinc-900 border-2 border-zinc-200/90 dark:border-zinc-800 overflow-hidden shadow-2xl card-hover-effect">
         <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
           
           <!-- Left Details (7 cols) -->
-          <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+          <div class="lg:col-span-7 p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-8">
             <div>
-              <div class="flex items-center gap-2 mb-3">
+              <div class="flex items-center gap-3 mb-4">
                 <span id="spotlight-category" class="cat-pill cat-pill-tech">
                   Technology
                 </span>
-                <span class="text-[11px] font-mono text-zinc-400">Featured</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                  🔥 Selling Fast
+                </span>
               </div>
 
-              <h2 id="spotlight-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+              <h3 id="spotlight-title" class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight text-zinc-900 dark:text-white leading-[1.08]">
                 Global AI & Next-Gen Web Summit 2026
-              </h2>
+              </h3>
 
-              <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-3 text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-                <div class="flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-5 text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-mono">
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                   <span id="spotlight-date">Dec 10 - 12, 2026</span>
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                   <span id="spotlight-venue">Silicon Convention Center, Tech Park</span>
                 </div>
               </div>
             </div>
 
-            <!-- Sleek Minimalist Countdown Block -->
-            <div class="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-850 border border-zinc-200/80 dark:border-zinc-800">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-2">Countdown to Kickoff</span>
-              <div class="grid grid-cols-4 gap-2 text-center">
-                <div class="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800">
-                  <span id="cd-days" class="text-xl sm:text-2xl font-bold font-mono text-zinc-900 dark:text-zinc-100 block">00</span>
-                  <span class="text-[9px] font-mono text-zinc-400 uppercase">Days</span>
+            <!-- Sleek Minimalist Countdown Block with BOLD NUMBERS -->
+            <div class="p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-850 border border-zinc-200/80 dark:border-zinc-800">
+              <span class="text-xs font-mono uppercase tracking-wider text-zinc-400 font-bold block mb-3">Event Commences In:</span>
+              <div class="grid grid-cols-4 gap-3 sm:gap-4 text-center">
+                <div class="p-3 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 shadow-sm">
+                  <span id="cd-days" class="text-3xl sm:text-5xl font-black font-mono text-zinc-900 dark:text-zinc-100 block">00</span>
+                  <span class="text-[10px] sm:text-xs font-mono font-bold text-zinc-400 uppercase mt-1 block">Days</span>
                 </div>
-                <div class="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800">
-                  <span id="cd-hours" class="text-xl sm:text-2xl font-bold font-mono text-zinc-900 dark:text-zinc-100 block">00</span>
-                  <span class="text-[9px] font-mono text-zinc-400 uppercase">Hours</span>
+                <div class="p-3 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 shadow-sm">
+                  <span id="cd-hours" class="text-3xl sm:text-5xl font-black font-mono text-zinc-900 dark:text-zinc-100 block">00</span>
+                  <span class="text-[10px] sm:text-xs font-mono font-bold text-zinc-400 uppercase mt-1 block">Hours</span>
                 </div>
-                <div class="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800">
-                  <span id="cd-minutes" class="text-xl sm:text-2xl font-bold font-mono text-zinc-900 dark:text-zinc-100 block">00</span>
-                  <span class="text-[9px] font-mono text-zinc-400 uppercase">Mins</span>
+                <div class="p-3 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 shadow-sm">
+                  <span id="cd-minutes" class="text-3xl sm:text-5xl font-black font-mono text-zinc-900 dark:text-zinc-100 block">00</span>
+                  <span class="text-[10px] sm:text-xs font-mono font-bold text-zinc-400 uppercase mt-1 block">Mins</span>
                 </div>
-                <div class="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800">
-                  <span id="cd-seconds" class="text-xl sm:text-2xl font-bold font-mono text-indigo-600 dark:text-indigo-400 block">00</span>
-                  <span class="text-[9px] font-mono text-zinc-400 uppercase">Secs</span>
+                <div class="p-3 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 shadow-sm">
+                  <span id="cd-seconds" class="text-3xl sm:text-5xl font-black font-mono text-indigo-600 dark:text-indigo-400 block animate-pulse">00</span>
+                  <span class="text-[10px] sm:text-xs font-mono font-bold text-zinc-400 uppercase mt-1 block">Secs</span>
                 </div>
               </div>
             </div>
 
             <!-- Actions & Price -->
-            <div class="flex items-center justify-between pt-1">
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
               <div>
-                <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block">Ticket Price</span>
-                <span id="spotlight-price" class="text-xl font-bold text-zinc-900 dark:text-white">$149</span>
+                <span class="text-xs font-mono uppercase tracking-wider text-zinc-400 font-bold block">Standard Pass</span>
+                <span id="spotlight-price" class="text-3xl sm:text-4xl font-black font-heading text-zinc-900 dark:text-white">$149</span>
               </div>
-              <div class="flex items-center gap-2">
-                <button id="spotlight-details-btn" class="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
-                  Details
+              <div class="flex items-center gap-3">
+                <button id="spotlight-details-btn" class="px-6 py-3.5 rounded-2xl border-2 border-zinc-200 dark:border-zinc-700 text-xs sm:text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors">
+                  View Full Details
                 </button>
-                <button id="spotlight-register-btn" class="px-5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-semibold transition-all">
-                  Register Pass
+                <button id="spotlight-register-btn" class="px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-black transition-all shadow-xl shadow-indigo-600/25 hover:-translate-y-0.5">
+                  Register Pass →
                 </button>
               </div>
             </div>
@@ -291,7 +306,7 @@
           </div>
 
           <!-- Right Image (5 cols) -->
-          <div class="lg:col-span-5 relative min-h-[240px] lg:min-h-full">
+          <div class="lg:col-span-5 relative min-h-[300px] lg:min-h-full">
             <img id="spotlight-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80" alt="Spotlight Event" class="w-full h-full object-cover" />
           </div>
 
@@ -301,46 +316,51 @@
     </section>
 
     <!-- ======================================================================= -->
-    <!-- BROWSE CATEGORIES (MINIMAL TILES)                                      -->
+    <!-- BROWSE CATEGORIES (ANIMATED TILES)                                      -->
     <!-- ======================================================================= -->
-    <section id="categories-section" class="py-12 border-t border-zinc-200/80 dark:border-zinc-800/80">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="categories-section" class="py-16 border-t border-zinc-200/80 dark:border-zinc-800/80 reveal-on-scroll">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="flex items-center justify-between mb-6">
-          <span class="text-xs font-mono uppercase tracking-wider text-zinc-400">Curated Categories</span>
-          <span class="text-xs text-zinc-400">Click to filter</span>
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold">Domain Filters</span>
+          <h2 class="text-3xl sm:text-5xl font-black font-heading text-zinc-900 dark:text-white mt-1">
+            Browse by Category
+          </h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">
+            Click any category to filter the live directory
+          </p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           
-          <button class="quick-cat-card group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left" data-category="tech">
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 block group-hover:text-indigo-600 dark:group-hover:text-indigo-400">Tech & AI</span>
-            <span class="text-[10px] text-zinc-400 mt-0.5 block">Summits & Labs</span>
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-indigo-500 transition-all text-left card-hover-effect reveal-stagger-1" data-category="tech">
+            <span class="text-sm sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 block group-hover:text-indigo-600 dark:group-hover:text-indigo-400">Tech & AI</span>
+            <span class="text-xs text-zinc-400 mt-1 block">Summits & Labs</span>
           </button>
 
-          <button class="quick-cat-card group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left" data-category="music">
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 block group-hover:text-pink-600 dark:group-hover:text-pink-400">Music</span>
-            <span class="text-[10px] text-zinc-400 mt-0.5 block">Live & Festivals</span>
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-pink-500 transition-all text-left card-hover-effect reveal-stagger-2" data-category="music">
+            <span class="text-sm sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 block group-hover:text-pink-600 dark:group-hover:text-pink-400">Music</span>
+            <span class="text-xs text-zinc-400 mt-1 block">Live & Festivals</span>
           </button>
 
-          <button class="quick-cat-card group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left" data-category="design">
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 block group-hover:text-purple-600 dark:group-hover:text-purple-400">Design & UI</span>
-            <span class="text-[10px] text-zinc-400 mt-0.5 block">Creative Craft</span>
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-purple-500 transition-all text-left card-hover-effect reveal-stagger-3" data-category="design">
+            <span class="text-sm sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 block group-hover:text-purple-600 dark:group-hover:text-purple-400">Design & UI</span>
+            <span class="text-xs text-zinc-400 mt-1 block">Creative Craft</span>
           </button>
 
-          <button class="quick-cat-card group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left" data-category="business">
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 block group-hover:text-sky-600 dark:group-hover:text-sky-400">Business</span>
-            <span class="text-[10px] text-zinc-400 mt-0.5 block">Startups & VCs</span>
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-sky-500 transition-all text-left card-hover-effect reveal-stagger-4" data-category="business">
+            <span class="text-sm sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 block group-hover:text-sky-600 dark:group-hover:text-sky-400">Business</span>
+            <span class="text-xs text-zinc-400 mt-1 block">Startups & VCs</span>
           </button>
 
-          <button class="quick-cat-card group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left" data-category="sports">
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 block group-hover:text-emerald-600 dark:group-hover:text-emerald-400">Sports</span>
-            <span class="text-[10px] text-zinc-400 mt-0.5 block">Runs & Wellness</span>
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-emerald-500 transition-all text-left card-hover-effect reveal-stagger-5" data-category="sports">
+            <span class="text-sm sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 block group-hover:text-emerald-600 dark:group-hover:text-emerald-400">Sports</span>
+            <span class="text-xs text-zinc-400 mt-1 block">Runs & Wellness</span>
           </button>
 
-          <button class="quick-cat-card group p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left" data-category="workshop">
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 block group-hover:text-amber-600 dark:group-hover:text-amber-400">Workshops</span>
-            <span class="text-[10px] text-zinc-400 mt-0.5 block">Hands-on Labs</span>
+          <button class="quick-cat-card group p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 hover:border-amber-500 transition-all text-left card-hover-effect reveal-stagger-6" data-category="workshop">
+            <span class="text-sm sm:text-base font-extrabold text-zinc-900 dark:text-zinc-100 block group-hover:text-amber-600 dark:group-hover:text-amber-400">Workshops</span>
+            <span class="text-xs text-zinc-400 mt-1 block">Hands-on Labs</span>
           </button>
 
         </div>
@@ -349,76 +369,77 @@
     </section>
 
     <!-- ======================================================================= -->
-    <!-- EXPLORE EVENTS DIRECTORY                                                -->
+    <!-- EXPLORE EVENTS DIRECTORY (SCROLL ANIMATED)                              -->
     <!-- ======================================================================= -->
-    <section id="explore-section" class="py-14 max-w-6xl mx-auto px-4 sm:px-6 scroll-mt-20">
+    <section id="explore-section" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 reveal-on-scroll">
       
       <!-- Toolbar Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Explore Events
+          <span class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold">Catalog</span>
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight text-zinc-900 dark:text-white mt-1">
+            Explore All Events
           </h2>
-          <span id="results-count-text" class="text-xs font-mono text-zinc-400 mt-0.5 block">
+          <span id="results-count-text" class="text-xs sm:text-sm font-mono text-zinc-400 mt-1 block">
             Showing 12 of 12 events
           </span>
         </div>
 
         <!-- View Grid/List Switcher -->
-        <div class="flex items-center gap-1 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 self-start sm:self-auto">
-          <button id="view-grid-btn" class="p-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 transition-colors" aria-label="Grid">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        <div class="flex items-center gap-1.5 p-1.5 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 self-start sm:self-auto">
+          <button id="view-grid-btn" class="p-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 transition-colors" aria-label="Grid">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
           </button>
-          <button id="view-list-btn" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" aria-label="List">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          <button id="view-list-btn" class="p-2 rounded-xl text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" aria-label="List">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
         </div>
       </div>
 
       <!-- Segmented Category Bar & Filter Controls -->
-      <div class="space-y-4 mb-8">
+      <div class="space-y-4 mb-10">
         <!-- Category Segmented Control -->
-        <div id="category-pills" class="flex items-center gap-1 p-1 bg-zinc-100 dark:bg-zinc-900 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 overflow-x-auto scrollbar-none">
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 transition-all whitespace-nowrap" data-category="all">
+        <div id="category-pills" class="flex items-center gap-1.5 p-1.5 bg-zinc-100 dark:bg-zinc-900 rounded-2xl border border-zinc-200/90 dark:border-zinc-800 overflow-x-auto scrollbar-none">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 transition-all whitespace-nowrap shadow-sm" data-category="all">
             All Events
           </button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="tech">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="tech">
             Technology
           </button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="music">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="music">
             Music
           </button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="design">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="design">
             Design
           </button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="business">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="business">
             Business
           </button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="sports">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="sports">
             Sports
           </button>
-          <button class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="workshop">
+          <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all whitespace-nowrap" data-category="workshop">
             Workshops
           </button>
         </div>
 
         <!-- Filter Dropdowns Row -->
-        <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div class="flex flex-wrap items-center gap-2">
-            <select id="date-filter" class="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
+        <div class="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm pt-2">
+          <div class="flex flex-wrap items-center gap-3">
+            <select id="date-filter" class="px-4 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500">
               <option value="all">All Dates</option>
               <option value="week">Next 7 Days</option>
               <option value="month">Next 30 Days</option>
             </select>
 
-            <select id="price-filter" class="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
+            <select id="price-filter" class="px-4 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500">
               <option value="all">All Prices</option>
               <option value="free">Free Events Only</option>
               <option value="under50">Under $50</option>
               <option value="50plus">$50 and above</option>
             </select>
 
-            <select id="sort-select" class="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
+            <select id="sort-select" class="px-4 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500">
               <option value="date-asc">Soonest Date</option>
               <option value="popular">Most Popular</option>
               <option value="price-asc">Price: Low to High</option>
@@ -426,64 +447,64 @@
             </select>
           </div>
 
-          <button id="reset-filters-btn" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center gap-1 font-medium transition-colors">
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-            <span>Reset filters</span>
+          <button id="reset-filters-btn" class="text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 font-bold transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            <span>Reset All Filters</span>
           </button>
         </div>
       </div>
 
-      <!-- Events Grid / List -->
-      <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+      <!-- Events Grid / List Container -->
+      <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Rendered by app.js -->
       </div>
 
       <!-- No Results State -->
-      <div id="no-results-state" class="hidden text-center py-20 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-        <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">No events found</h3>
-        <p class="text-xs text-zinc-400 mt-1 max-w-xs mx-auto">Try clearing search terms or resetting filters.</p>
-        <button onclick="document.getElementById('reset-filters-btn').click()" class="mt-4 px-4 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-semibold">
-          Reset Filters
+      <div id="no-results-state" class="hidden text-center py-24 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+        <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">No events found matching your criteria</h3>
+        <p class="text-sm text-zinc-400 mt-2 max-w-sm mx-auto">Try clearing search terms or resetting filters to see the full directory.</p>
+        <button onclick="document.getElementById('reset-filters-btn').click()" class="mt-6 px-6 py-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-bold shadow-md">
+          Reset All Filters
         </button>
       </div>
 
     </section>
 
     <!-- ======================================================================= -->
-    <!-- HOW IT WORKS (MINIMAL 3-STEP FLOW)                                     -->
+    <!-- HOW IT WORKS (ANIMATED 3-STEP FLOW)                                     -->
     <!-- ======================================================================= -->
-    <section id="how-it-works" class="py-16 border-t border-zinc-200/80 dark:border-zinc-800/80">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="how-it-works" class="py-24 border-t border-zinc-200/80 dark:border-zinc-800/80 reveal-on-scroll">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-10">
-          <span class="text-xs font-mono uppercase tracking-wider text-zinc-400">Architecture</span>
-          <h2 class="text-xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">
-            Engineered for simplicity.
+        <div class="mb-14">
+          <span class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold">Platform Flow</span>
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black font-heading tracking-tight text-zinc-900 dark:text-white mt-1">
+            Engineered for seamless booking.
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 space-y-2">
-            <span class="text-xs font-mono text-zinc-400 block">01 / DISCOVERY</span>
-            <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">Browse & Filter</h3>
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Real-time query engine with category segmentation, date ranges, and instant keyword indexing.
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border-2 border-zinc-200/80 dark:border-zinc-800 space-y-4 card-hover-effect">
+            <span class="text-5xl sm:text-7xl font-black font-heading text-indigo-500/20 dark:text-indigo-400/20 block font-mono">01</span>
+            <h3 class="text-xl font-black font-heading text-zinc-900 dark:text-zinc-100">Discover & Filter</h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Explore conferences, workshops, and concerts. Instant full-text search with category filters and price range sorting.
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 space-y-2">
-            <span class="text-xs font-mono text-zinc-400 block">02 / REGISTRATION</span>
-            <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">Live Form Validation</h3>
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Client-side regex verification ensures data integrity for names, emails, phone numbers, and seat capacity.
+          <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border-2 border-zinc-200/80 dark:border-zinc-800 space-y-4 card-hover-effect">
+            <span class="text-5xl sm:text-7xl font-black font-heading text-purple-500/20 dark:text-purple-400/20 block font-mono">02</span>
+            <h3 class="text-xl font-black font-heading text-zinc-900 dark:text-zinc-100">Live Form Validation</h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Client-side verification ensures complete accuracy for attendee names, emails, 10-digit phone numbers, and seat capacity.
             </p>
           </div>
 
-          <div class="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 space-y-2">
-            <span class="text-xs font-mono text-zinc-400 block">03 / DIGITAL PASS</span>
-            <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">Instant Vector Pass</h3>
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Generate scannable vector QR boarding passes with print/PDF support and one-click RFC 5545 `.ics` calendar sync.
+          <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border-2 border-zinc-200/80 dark:border-zinc-800 space-y-4 card-hover-effect">
+            <span class="text-5xl sm:text-7xl font-black font-heading text-pink-500/20 dark:text-pink-400/20 block font-mono">03</span>
+            <h3 class="text-xl font-black font-heading text-zinc-900 dark:text-zinc-100">Digital QR Pass & Sync</h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Receive your airline boarding-pass style digital ticket with vector QR code, Print/PDF export, and one-click `.ics` calendar sync.
             </p>
           </div>
         </div>
@@ -492,16 +513,17 @@
     </section>
 
     <!-- ======================================================================= -->
-    <!-- NEWSLETTER (CLEAN MINIMAL BAR)                                          -->
+    <!-- NEWSLETTER (IMPACTFUL CTA BAR)                                          -->
     <!-- ======================================================================= -->
-    <section class="py-14 border-t border-zinc-200/80 dark:border-zinc-800/80">
-      <div class="max-w-xl mx-auto px-4 text-center space-y-3">
-        <h3 class="text-base font-bold text-zinc-900 dark:text-white">Stay in the loop</h3>
-        <p class="text-xs text-zinc-500 dark:text-zinc-400">Receive weekly digests of curated events and early registration releases.</p>
+    <section class="py-20 border-t border-zinc-200/80 dark:border-zinc-800/80 reveal-on-scroll">
+      <div class="max-w-2xl mx-auto px-4 text-center space-y-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold">Community Digest</span>
+        <h3 class="text-2xl sm:text-4xl font-black font-heading text-zinc-900 dark:text-white">Stay Ahead of the Curve</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">Receive weekly digests of curated events and early-bird ticket discounts directly in your inbox.</p>
         
-        <form id="newsletter-form" class="flex gap-2 pt-2">
-          <input id="newsletter-email" type="email" placeholder="Enter your email" class="flex-1 px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100" required />
-          <button type="submit" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-semibold">
+        <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 pt-3">
+          <input id="newsletter-email" type="email" placeholder="Enter your email address..." class="flex-1 px-5 py-3.5 rounded-2xl bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-800 text-sm font-semibold text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-indigo-600" required />
+          <button type="submit" class="px-8 py-3.5 rounded-2xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-sm font-black transition-all shadow-md">
             Subscribe
           </button>
         </form>
@@ -513,17 +535,17 @@
   <!-- ========================================================================= -->
   <!-- FOOTER                                                                    -->
   <!-- ========================================================================= -->
-  <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 text-xs text-zinc-400">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-bold text-zinc-700 dark:text-zinc-300">PulseEvent</span>
+  <footer class="border-t border-zinc-200 dark:border-zinc-800 py-12 text-xs text-zinc-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-extrabold text-sm text-zinc-800 dark:text-zinc-200">PulseEvent</span>
         <span>•</span>
-        <span>K Explore Web Designing Submission</span>
+        <span>Built for K Explore Web Designing Evaluation</span>
       </div>
-      <div class="flex items-center gap-4 text-zinc-400">
-        <a href="#featured-section" class="hover:text-zinc-700 dark:hover:text-zinc-200">Spotlight</a>
-        <a href="#explore-section" class="hover:text-zinc-700 dark:hover:text-zinc-200">Directory</a>
-        <a href="#how-it-works" class="hover:text-zinc-700 dark:hover:text-zinc-200">About</a>
+      <div class="flex items-center gap-6 text-xs font-semibold text-zinc-400">
+        <a href="#featured-section" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Spotlight</a>
+        <a href="#explore-section" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Directory</a>
+        <a href="#how-it-works" class="hover:text-zinc-900 dark:hover:text-white transition-colors">How It Works</a>
       </div>
     </div>
   </footer>
@@ -533,72 +555,72 @@
   <!-- ========================================================================= -->
 
   <!-- 1. EVENT DETAILS MODAL -->
-  <div id="event-details-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/60 backdrop-blur-xl overflow-y-auto" role="dialog" aria-modal="true">
-    <div class="relative w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200/90 dark:border-zinc-800 shadow-2xl overflow-hidden animate-spring my-8 max-h-[88vh] flex flex-col">
-      <button id="close-details-btn" class="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-zinc-900/60 hover:bg-zinc-900 text-white backdrop-blur-md flex items-center justify-center transition-colors" aria-label="Close">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  <div id="event-details-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/70 backdrop-blur-2xl overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-3xl bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 shadow-2xl overflow-hidden animate-spring my-8 max-h-[90vh] flex flex-col">
+      <button id="close-details-btn" class="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-zinc-900/70 hover:bg-zinc-900 text-white backdrop-blur-md flex items-center justify-center transition-colors shadow-lg" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
       <div id="event-details-content" class="overflow-y-auto flex-1"></div>
     </div>
   </div>
 
   <!-- 2. REGISTRATION MODAL -->
-  <div id="registration-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/60 backdrop-blur-xl overflow-y-auto" role="dialog" aria-modal="true">
-    <div class="relative w-full max-w-lg bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200/90 dark:border-zinc-800 shadow-2xl overflow-hidden animate-spring my-8">
+  <div id="registration-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/70 backdrop-blur-2xl overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-xl bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200/90 dark:border-zinc-800 shadow-2xl overflow-hidden animate-spring my-8">
       
-      <div class="p-6 pb-4 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+      <div class="p-8 pb-5 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
         <div>
-          <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Reserve Access</span>
-          <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Event Registration</h3>
+          <span class="text-xs font-mono uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-bold">Registration</span>
+          <h3 class="text-2xl font-black font-heading text-zinc-900 dark:text-zinc-100 mt-0.5">Secure Your Event Pass</h3>
         </div>
-        <button id="close-reg-btn" class="w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center" aria-label="Close">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <button id="close-reg-btn" class="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center" aria-label="Close">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
 
-      <form id="registration-form" class="p-6 space-y-4" novalidate>
+      <form id="registration-form" class="p-8 space-y-5" novalidate>
         <div id="reg-event-summary"></div>
 
         <div>
-          <label for="reg-name" class="block text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
+          <label for="reg-name" class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
             Full Name <span class="text-rose-500">*</span>
           </label>
-          <input id="reg-name" type="text" placeholder="e.g. Alex Rivera" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100" required />
-          <p id="reg-name-error" class="form-error text-[10px] font-medium text-rose-500 mt-1 hidden"></p>
+          <input id="reg-name" type="text" placeholder="e.g. Alex Rivera" class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border-2 border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-600 transition-all" required />
+          <p id="reg-name-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
         </div>
 
         <div>
-          <label for="reg-email" class="block text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
+          <label for="reg-email" class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
             Email Address <span class="text-rose-500">*</span>
           </label>
-          <input id="reg-email" type="email" placeholder="e.g. alex@domain.com" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100" required />
-          <p id="reg-email-error" class="form-error text-[10px] font-medium text-rose-500 mt-1 hidden"></p>
+          <input id="reg-email" type="email" placeholder="e.g. alex@domain.com" class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border-2 border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-600 transition-all" required />
+          <p id="reg-email-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
         </div>
 
         <div>
-          <label for="reg-phone" class="block text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
+          <label for="reg-phone" class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
             Phone Number <span class="text-rose-500">*</span>
           </label>
-          <input id="reg-phone" type="tel" placeholder="e.g. 9876543210" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-medium text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-zinc-900 dark:focus:ring-zinc-100" required />
-          <p id="reg-phone-error" class="form-error text-[10px] font-medium text-rose-500 mt-1 hidden"></p>
+          <input id="reg-phone" type="tel" placeholder="e.g. 9876543210" class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border-2 border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-600 transition-all" required />
+          <p id="reg-phone-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="reg-ticket-tier" class="block text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
-              Tier
+            <label for="reg-ticket-tier" class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
+              Pass Tier
             </label>
-            <select id="reg-ticket-tier" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-900 dark:text-white">
-              <option value="general">Standard</option>
-              <option value="vip">VIP (+60%)</option>
-              <option value="student">Student (-30%)</option>
+            <select id="reg-ticket-tier" class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border-2 border-zinc-200 dark:border-zinc-700 text-xs sm:text-sm font-bold text-zinc-900 dark:text-white">
+              <option value="general">Standard Pass</option>
+              <option value="vip">VIP All-Access (+60%)</option>
+              <option value="student">Student Pass (-30%)</option>
             </select>
           </div>
           <div>
-            <label for="reg-ticket-count" class="block text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
+            <label for="reg-ticket-count" class="block text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
               Seats (Max 5)
             </label>
-            <select id="reg-ticket-count" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 text-xs font-semibold text-zinc-900 dark:text-white">
+            <select id="reg-ticket-count" class="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/80 border-2 border-zinc-200 dark:border-zinc-700 text-xs sm:text-sm font-bold text-zinc-900 dark:text-white">
               <option value="1">1 Seat</option>
               <option value="2">2 Seats</option>
               <option value="3">3 Seats</option>
@@ -609,22 +631,22 @@
         </div>
 
         <div>
-          <label class="flex items-start gap-2 cursor-pointer pt-1">
-            <input id="reg-terms" type="checkbox" class="w-3.5 h-3.5 mt-0.5 rounded text-zinc-900 focus:ring-0 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700" required />
-            <span class="text-[11px] text-zinc-500 dark:text-zinc-400">
+          <label class="flex items-start gap-2.5 cursor-pointer pt-1">
+            <input id="reg-terms" type="checkbox" class="w-4 h-4 mt-0.5 rounded text-indigo-600 focus:ring-0 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700" required />
+            <span class="text-xs text-zinc-600 dark:text-zinc-300">
               I agree to the Terms of Attendance and acknowledge event policies.
             </span>
           </label>
-          <p id="reg-terms-error" class="form-error text-[10px] font-medium text-rose-500 mt-1 hidden"></p>
+          <p id="reg-terms-error" class="form-error text-[11px] font-semibold text-rose-500 mt-1 hidden"></p>
         </div>
 
-        <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
           <div>
-            <span class="text-[9px] font-mono uppercase tracking-wider text-zinc-400 block">Total</span>
-            <span id="reg-price-total" class="text-base font-bold text-zinc-900 dark:text-white">$149</span>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-bold block">Total Amount</span>
+            <span id="reg-price-total" class="text-xl font-black font-heading text-zinc-900 dark:text-white">$149</span>
           </div>
-          <button id="reg-submit-btn" type="submit" class="px-5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-bold transition-all">
-            Confirm Booking
+          <button id="reg-submit-btn" type="submit" class="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-black transition-all shadow-lg shadow-indigo-600/30">
+            Confirm & Complete
           </button>
         </div>
 
@@ -632,22 +654,22 @@
     </div>
   </div>
 
-  <!-- 3. DIGITAL TICKET MODAL -->
-  <div id="ticket-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/70 backdrop-blur-xl overflow-y-auto" role="dialog" aria-modal="true">
-    <div class="relative w-full max-w-lg animate-spring my-8">
+  <!-- 3. DIGITAL TICKET PASS MODAL -->
+  <div id="ticket-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/75 backdrop-blur-2xl overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-xl animate-spring my-8">
       
-      <div class="no-print flex items-center justify-between mb-3 bg-white dark:bg-zinc-900 p-3 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-xs">
-        <span class="font-semibold text-zinc-800 dark:text-zinc-200 flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Verified Pass
+      <div class="no-print flex items-center justify-between mb-4 bg-white dark:bg-zinc-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-lg text-xs">
+        <span class="font-bold text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span> Verified Digital Pass
         </span>
-        <div class="flex items-center gap-1.5">
-          <button id="download-ics-btn" class="px-2.5 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 text-[11px] font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
-            Add to Calendar
+        <div class="flex items-center gap-2">
+          <button id="download-ics-btn" class="px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 text-xs font-bold transition-colors">
+            📅 Add to Calendar
           </button>
-          <button id="print-ticket-btn" class="px-2.5 py-1 rounded-lg bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 text-[11px] font-medium text-white dark:text-zinc-900 transition-colors">
-            Print
+          <button id="print-ticket-btn" class="px-3.5 py-1.5 rounded-xl bg-zinc-900 dark:bg-zinc-100 hover:bg-zinc-800 text-xs font-bold text-white dark:text-zinc-900 transition-colors">
+            🖨️ Print
           </button>
-          <button id="close-ticket-btn" class="w-7 h-7 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center">
+          <button id="close-ticket-btn" class="w-8 h-8 rounded-xl text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
@@ -655,9 +677,9 @@
 
       <div id="ticket-container"></div>
 
-      <div class="no-print mt-3 text-center">
-        <button id="view-bookings-from-ticket-btn" class="text-xs text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-          View all passes in My Passes →
+      <div class="no-print mt-4 text-center">
+        <button id="view-bookings-from-ticket-btn" class="text-xs font-bold text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors underline">
+          View all registered passes in My Passes →
         </button>
       </div>
 
@@ -665,51 +687,51 @@
   </div>
 
   <!-- 4. "MY PASSES" DRAWER -->
-  <aside id="bookings-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-zinc-50 dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
+  <aside id="bookings-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-zinc-50 dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
     
-    <div class="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-white dark:bg-zinc-900">
+    <div class="p-6 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-white dark:bg-zinc-900">
       <div>
-        <h3 class="text-sm font-bold text-zinc-900 dark:text-zinc-100">My Passes</h3>
-        <p class="text-[10px] font-mono text-zinc-400">Stored locally in browser</p>
+        <h3 class="text-base font-black font-heading text-zinc-900 dark:text-zinc-100">My Passes</h3>
+        <p class="text-xs font-mono text-zinc-400">Stored locally in your browser</p>
       </div>
-      <button id="close-bookings-btn" class="w-7 h-7 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center" aria-label="Close">
+      <button id="close-bookings-btn" class="w-8 h-8 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center" aria-label="Close">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
     </div>
 
-    <div id="bookings-list" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+    <div id="bookings-list" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
 
-    <div id="empty-bookings-notice" class="hidden flex-1 flex flex-col items-center justify-center p-6 text-center">
-      <h4 class="text-xs font-bold text-zinc-700 dark:text-zinc-300">No active passes</h4>
-      <p class="text-[11px] text-zinc-400 mt-1 max-w-xs">Register for an event to access your digital check-in passes here.</p>
+    <div id="empty-bookings-notice" class="hidden flex-1 flex flex-col items-center justify-center p-8 text-center">
+      <h4 class="text-sm font-bold text-zinc-700 dark:text-zinc-300">No active passes</h4>
+      <p class="text-xs text-zinc-400 mt-1 max-w-xs">Register for an upcoming event to access your digital check-in passes here.</p>
     </div>
 
   </aside>
 
   <!-- 5. "HOST AN EVENT" MODAL -->
-  <div id="host-event-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/60 backdrop-blur-xl overflow-y-auto" role="dialog" aria-modal="true">
-    <div class="relative w-full max-w-lg bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden animate-spring my-8">
+  <div id="host-event-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-zinc-950/70 backdrop-blur-2xl overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-xl bg-white dark:bg-zinc-900 rounded-3xl border-2 border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden animate-spring my-8">
       
-      <div class="p-6 pb-4 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+      <div class="p-8 pb-5 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
         <div>
-          <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Organizer</span>
-          <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Publish Event</h3>
+          <span class="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-bold">Organizer Portal</span>
+          <h3 class="text-2xl font-black font-heading text-zinc-900 dark:text-zinc-100">Publish New Event</h3>
         </div>
-        <button id="close-host-btn" class="w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <button id="close-host-btn" class="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
 
-      <form id="host-event-form" class="p-6 space-y-3.5 text-xs">
+      <form id="host-event-form" class="p-8 space-y-4 text-xs">
         <div>
-          <label for="host-title" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Title *</label>
-          <input id="host-title" type="text" placeholder="e.g. NextGen Web Symposium" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required />
+          <label for="host-title" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Event Title *</label>
+          <input id="host-title" type="text" placeholder="e.g. NextGen Web Symposium" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-semibold" required />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="host-category" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Category *</label>
-            <select id="host-category" class="w-full px-2.5 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white">
+            <label for="host-category" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Category *</label>
+            <select id="host-category" class="w-full px-3 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-semibold">
               <option value="Technology">Technology</option>
               <option value="Music">Music</option>
               <option value="Design">Design</option>
@@ -719,49 +741,49 @@
             </select>
           </div>
           <div>
-            <label for="host-date" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Date *</label>
-            <input id="host-date" type="date" value="2026-12-15" class="w-full px-2.5 py-1.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-mono" required />
+            <label for="host-date" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Date *</label>
+            <input id="host-date" type="date" value="2026-12-15" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-mono font-semibold" required />
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="host-time" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Time *</label>
-            <input id="host-time" type="text" placeholder="10:00 AM - 05:00 PM" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required />
+            <label for="host-time" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Time *</label>
+            <input id="host-time" type="text" placeholder="10:00 AM - 05:00 PM" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required />
           </div>
           <div>
-            <label for="host-city" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">City</label>
-            <input id="host-city" type="text" placeholder="San Francisco / Hybrid" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" />
+            <label for="host-city" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">City</label>
+            <input id="host-city" type="text" placeholder="San Francisco / Hybrid" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" />
           </div>
         </div>
 
         <div>
-          <label for="host-venue" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Venue *</label>
-          <input id="host-venue" type="text" placeholder="Grand Hall, Innovation Campus" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required />
+          <label for="host-venue" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Venue *</label>
+          <input id="host-venue" type="text" placeholder="Grand Hall, Innovation Campus" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="host-price" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Price ($)</label>
-            <input id="host-price" type="number" min="0" value="0" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-mono" />
+            <label for="host-price" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Ticket Price ($)</label>
+            <input id="host-price" type="number" min="0" value="0" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-mono font-bold" />
           </div>
           <div>
-            <label for="host-capacity" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Capacity</label>
-            <input id="host-capacity" type="number" min="10" value="120" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-mono" />
+            <label for="host-capacity" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Total Capacity</label>
+            <input id="host-capacity" type="number" min="10" value="120" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white font-mono font-bold" />
           </div>
         </div>
 
         <div>
-          <label for="host-short-desc" class="block font-semibold uppercase tracking-wider text-zinc-400 text-[10px] mb-1">Short Description *</label>
-          <textarea id="host-short-desc" rows="2" class="w-full px-3 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required></textarea>
+          <label for="host-short-desc" class="block font-bold uppercase tracking-wider text-zinc-500 text-[11px] mb-1.5">Short Description *</label>
+          <textarea id="host-short-desc" rows="2" class="w-full px-4 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white" required></textarea>
         </div>
 
-        <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex justify-end gap-2">
-          <button type="button" onclick="document.getElementById('close-host-btn').click()" class="px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300">
+        <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-end gap-3">
+          <button type="button" onclick="document.getElementById('close-host-btn').click()" class="px-5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 font-bold">
             Cancel
           </button>
-          <button type="submit" class="px-4 py-2 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold">
-            Publish
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-black shadow-md">
+            Publish Event
           </button>
         </div>
       </form>
@@ -769,7 +791,7 @@
   </div>
 
   <!-- FLOATING TOASTS -->
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-xs w-full"></div>
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 pointer-events-none max-w-sm w-full"></div>
 
   <!-- SCRIPTS -->
   <script src="js/events-data.js"></script>
