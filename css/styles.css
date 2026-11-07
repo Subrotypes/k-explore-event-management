@@ -1,27 +1,32 @@
-/* PulseEvent - Custom Stylesheet & Design System */
+/* PulseEvent - World-Class Minimalist Design System */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-body {
-  font-family: var(--font-primary);
+html {
+  font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.015em;
 }
 
-h1, h2, h3, .font-heading {
-  font-family: var(--font-heading);
+body {
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Custom Scrollbars */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Subtle Modern Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -29,206 +34,227 @@ h1, h2, h3, .font-heading {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: rgba(161, 161, 170, 0.4);
   border-radius: 9999px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: rgba(82, 82, 91, 0.4);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: rgba(113, 113, 122, 0.7);
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
-
-/* Glassmorphism Classes */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.dark .glass-panel {
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-nav {
+/* World-Class Glassmorphism & Translucency */
+.glass-surface {
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
-.dark .glass-nav {
-  background: rgba(10, 15, 29, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+.dark .glass-surface {
+  background: rgba(18, 18, 22, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
-/* Glow & Accent Effects */
-.glow-primary {
-  box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.35);
+.glass-header {
+  background: rgba(250, 250, 250, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.glow-card:hover {
-  box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.15), 0 0 15px -3px rgba(168, 85, 247, 0.15);
+.dark .glass-header {
+  background: rgba(9, 9, 11, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-/* Ticket Styling & Notches */
-.ticket-card {
-  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+/* Ultra-Refined Border & Elevation */
+.subtle-border {
+  border-color: rgba(228, 228, 231, 0.8);
 }
 
-.dark .ticket-card {
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+.dark .subtle-border {
+  border-color: rgba(39, 39, 42, 0.8);
 }
 
-/* Animations */
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+.card-elevation {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
 }
 
-.animate-float {
-  animation: floatSlow 5s ease-in-out infinite;
+.card-elevation:hover {
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
+.dark .card-elevation {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2);
 }
 
-.animate-glow {
-  animation: pulseGlow 4s ease-in-out infinite;
+.dark .card-elevation:hover {
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-@keyframes modalFadeIn {
-  from {
+/* Micro Animations & Springs */
+@keyframes springIn {
+  0% {
     opacity: 0;
-    transform: scale(0.96) translateY(10px);
+    transform: scale(0.97) translateY(8px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
 }
 
-.modal-animate-in {
-  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-spring {
+  animation: springIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes toastSlideUp {
-  from {
+@keyframes toastSlide {
+  0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    transform: translateY(16px) scale(0.96);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
 
 .toast-animate-in {
-  animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Badge & Category Colors */
-.cat-badge-tech {
-  background-color: rgba(99, 102, 241, 0.12);
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.animate-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* Apple Wallet / Boarding Pass Ticket Cutout Notches */
+.ticket-wrapper {
+  position: relative;
+  border-radius: 24px;
+}
+
+.ticket-notch-left, .ticket-notch-right {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  background-color: #fafafa;
+  border-radius: 9999px;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.dark .ticket-notch-left, .dark .ticket-notch-right {
+  background-color: #09090b;
+}
+
+.ticket-notch-left {
+  left: -11px;
+}
+
+.ticket-notch-right {
+  right: -11px;
+}
+
+/* Minimalist Category Badge Colors */
+.cat-pill {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.cat-pill-tech {
+  background: rgba(99, 102, 241, 0.08);
   color: #4f46e5;
-  border-color: rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
-.dark .cat-badge-tech {
-  background-color: rgba(99, 102, 241, 0.2);
-  color: #818cf8;
-  border-color: rgba(99, 102, 241, 0.35);
+.dark .cat-pill-tech {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.28);
 }
 
-.cat-badge-music {
-  background-color: rgba(236, 72, 153, 0.12);
+.cat-pill-music {
+  background: rgba(236, 72, 153, 0.08);
   color: #db2777;
-  border-color: rgba(236, 72, 153, 0.25);
+  border: 1px solid rgba(236, 72, 153, 0.2);
 }
-.dark .cat-badge-music {
-  background-color: rgba(236, 72, 153, 0.2);
+.dark .cat-pill-music {
+  background: rgba(236, 72, 153, 0.15);
   color: #f472b6;
-  border-color: rgba(236, 72, 153, 0.35);
+  border: 1px solid rgba(236, 72, 153, 0.28);
 }
 
-.cat-badge-design {
-  background-color: rgba(168, 85, 247, 0.12);
+.cat-pill-design {
+  background: rgba(168, 85, 247, 0.08);
   color: #9333ea;
-  border-color: rgba(168, 85, 247, 0.25);
+  border: 1px solid rgba(168, 85, 247, 0.2);
 }
-.dark .cat-badge-design {
-  background-color: rgba(168, 85, 247, 0.2);
+.dark .cat-pill-design {
+  background: rgba(168, 85, 247, 0.15);
   color: #c084fc;
-  border-color: rgba(168, 85, 247, 0.35);
+  border: 1px solid rgba(168, 85, 247, 0.28);
 }
 
-.cat-badge-business {
-  background-color: rgba(14, 165, 233, 0.12);
+.cat-pill-business {
+  background: rgba(14, 165, 233, 0.08);
   color: #0284c7;
-  border-color: rgba(14, 165, 233, 0.25);
+  border: 1px solid rgba(14, 165, 233, 0.2);
 }
-.dark .cat-badge-business {
-  background-color: rgba(14, 165, 233, 0.2);
+.dark .cat-pill-business {
+  background: rgba(14, 165, 233, 0.15);
   color: #38bdf8;
-  border-color: rgba(14, 165, 233, 0.35);
+  border: 1px solid rgba(14, 165, 233, 0.28);
 }
 
-.cat-badge-sports {
-  background-color: rgba(16, 185, 129, 0.12);
+.cat-pill-sports {
+  background: rgba(16, 185, 129, 0.08);
   color: #059669;
-  border-color: rgba(16, 185, 129, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
-.dark .cat-badge-sports {
-  background-color: rgba(16, 185, 129, 0.2);
+.dark .cat-pill-sports {
+  background: rgba(16, 185, 129, 0.15);
   color: #34d399;
-  border-color: rgba(16, 185, 129, 0.35);
+  border: 1px solid rgba(16, 185, 129, 0.28);
 }
 
-.cat-badge-workshop {
-  background-color: rgba(245, 158, 11, 0.12);
+.cat-pill-workshop {
+  background: rgba(245, 158, 11, 0.08);
   color: #d97706;
-  border-color: rgba(245, 158, 11, 0.25);
+  border: 1px solid rgba(245, 158, 11, 0.2);
 }
-.dark .cat-badge-workshop {
-  background-color: rgba(245, 158, 11, 0.2);
+.dark .cat-pill-workshop {
+  background: rgba(245, 158, 11, 0.15);
   color: #fbbf24;
-  border-color: rgba(245, 158, 11, 0.35);
+  border: 1px solid rgba(245, 158, 11, 0.28);
 }
 
-/* Form Styles */
-input:focus, select:focus, textarea:focus {
-  outline: none;
-}
-
-/* Print Optimization for Digital Pass */
+/* Print Styles */
 @media print {
   body * {
-    visibility: hidden;
+    visibility: hidden !important;
   }
   
   #printable-ticket, #printable-ticket * {
-    visibility: visible;
+    visibility: visible !important;
   }
 
   #printable-ticket {
@@ -238,21 +264,13 @@ input:focus, select:focus, textarea:focus {
     width: 100% !important;
     max-width: 100% !important;
     box-shadow: none !important;
-    border: 2px solid #000 !important;
-    background: #fff !important;
-    color: #000 !important;
+    border: 1px solid #18181b !important;
+    background: #ffffff !important;
+    color: #09090b !important;
     margin: 0 !important;
     padding: 24px !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-  }
-
-  #printable-ticket .ticket-header,
-  #printable-ticket h3,
-  #printable-ticket h4,
-  #printable-ticket p,
-  #printable-ticket span {
-    color: #000 !important;
   }
 
   .no-print {
